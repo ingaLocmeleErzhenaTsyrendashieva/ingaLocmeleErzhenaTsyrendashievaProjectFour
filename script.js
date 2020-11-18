@@ -37,29 +37,30 @@ app.quotes = function () {
 
 
 // add event listener that takes user's input by pressing "enter" key
-app.addEventListener = function () {
-    let cityInput = document.getElementById("userCityInput");
-    // listen the event if user hit the "enter" key
-    cityInput.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            // call function that saves user's input
-            app.getUserInput();
-        }
-    })
+const userInput = () => {$('#userCityInput').keyup(function(e){
+    let code = e.key;
+    if(code === "Enter"){
+        e.preventDefault();
+        app.cityName = $('#userCityInput').val();
+        app.weatherForecast(app.cityName);
+    }   
+})
 }
 
 //add event listener that calls function when user clicks button 
-app.getUserInput = () =>{
-    // return user's input and save in variable
-    app.cityName = document.getElementById("userCityInput").value;
-    // call function app.weatherForecast
+const userInputButton = () =>{
+    $('#userInputBtn').on('click', function(e){
+    e.preventDefault();
+    app.cityName = $('#userCityInput').val();
     app.weatherForecast(app.cityName);
+})
 }
-
 
 //define a method which will initialize the app once the document is ready
 app.init = function () {
-    app.weatherForecast()
+    app.weatherForecast();
+    userInput();
+    userInputButton();
 };
 
 
