@@ -28,6 +28,7 @@ app.weatherForecast = function(cityName) {
     });
 }
 
+
 // Get quotes
 app.quotes = function () {
     $.ajax({
@@ -59,8 +60,8 @@ app.displayWeather = (weatherData) => {
         .utcOffset(weatherData.timezone/60)
         .format('ddd MMM D Y hh:mm:ss A ').toString();
     // 
-    let tempCelcia = Math.floor(weatherData.main.temp);
-    let feelLikeTemp = Math.floor(weatherData.main.feels_like);
+    let tempCelcia = Math.round(weatherData.main.temp);
+    let feelLikeTemp = Math.round(weatherData.main.feels_like);
     
     //store data 
     const spanCity = `<span class="city">${weatherData.name},</span>`;
