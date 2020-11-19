@@ -5,10 +5,11 @@ const app = {};
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 // store the root endpoint of the API within app object
 app.api = 'https://api.openweathermap.org/data/2.5/weather';
+// declear variable with default data
 app.cityName = "Toronto";
 
 // global variable
-// let submitBtn = document.getElementById("userInputBtn");
+
 // Weather Forecast
 app.weatherForecast = function(cityName) {
     app.cityName = cityName;
@@ -33,7 +34,6 @@ app.quotes = function () {
         dataType: "json",
         method: "GET"
     }).then(function (response) {
-        console.log(response, "my quotes"); 
         app.displayQuotes(response);       
     });
 };
@@ -41,14 +41,13 @@ app.quotes = function () {
 
 // add event listener that takes user's input 
 const userInput = () => {
-    // console.log("ff")
    $('form').submit(function(e){
-   e.preventDefault();
-   let userInputCity = $('#userInput').val();
-//    clear form after user hit submit button
-       $("form").trigger("reset");
-//    pass user's city to a function as a param
-       app.weatherForecast(userInputCity);
+        e.preventDefault();
+        let userInputCity = $('#userInput').val();
+        //clear form after user hit submit button
+        $("form").trigger("reset");
+        //pass user's city to a function as a param
+        app.weatherForecast(userInputCity);
    } )
 }
 
@@ -59,10 +58,10 @@ app.displayWeather = (weatherData) => {
         .utcOffset(weatherData.timezone/60)
         .format('ddd MMM D Y hh:mm:ss A ').toString();
 
+    // TODO add more data to display
     //store data 
     const spanCity = `<span class="city">${weatherData.name},</span>`;
     const spanCountry = `<span class="country">${weatherData.sys.country}</span >`;
-    // console.log(spanCountry);
     const spanDateTime = `<span class="country">${localTime}</span >`;
     const spanTemp = `<br><span class="country">${weatherData.main.temp}</span >`;
 
@@ -71,7 +70,7 @@ app.displayWeather = (weatherData) => {
    
 }
 
-// define function thats displays quotes on the page html
+// define function that displays quotes on the html page
 app.displayQuotes = (dayQuote) =>{
     console.log(dayQuote);
     const advice = dayQuote.slip.advice;
@@ -85,7 +84,6 @@ app.init = function () {
     userInput();
     app.quotes();
 };
-
 
 //Document Ready
 $(() => app.init());
