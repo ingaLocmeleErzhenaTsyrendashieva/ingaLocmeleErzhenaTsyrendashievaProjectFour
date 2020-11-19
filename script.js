@@ -63,6 +63,8 @@ app.makeCityArray = function () {
     app.jqueryUiAutoFill();
 }
 
+
+
 //Get the main object, search by a city.
 app.init = function () {
     app.makeCityArray();
