@@ -251,7 +251,8 @@ html {
 }
 
 body {
-  font-size: 2.5rem;
+  color: white;
+  font-size: 1.6rem;
 }
 
 img {
@@ -262,6 +263,7 @@ img {
 
 a, button {
   line-height: 3.2rem;
+  display: block;
 }
 
 a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, textarea:hover, textarea:focus {
@@ -278,4 +280,59 @@ a, button {
 
 ul {
   list-style: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+main {
+  min-height: 600px;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+}
+
+.sideSection {
+  margin: 0;
+  margin-left: calc(25% - 285px);
+  max-width: 285px;
+}
+
+.sideWeather {
+  background-color: black;
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  min-height: 80%;
+}
+
+.bottomSection {
+  background-color: black;
+  min-height: 20%;
+}
+
+.bottomWeather {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bottomWeather ul {
+  width: 20%;
 }

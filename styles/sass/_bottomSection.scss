@@ -1,0 +1,13 @@
+.bottomSection {
+    background-color: black;
+    min-height: 20%;
+}
+
+.bottomWeather {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomWeather ul {
+    width: 20%;
+}
