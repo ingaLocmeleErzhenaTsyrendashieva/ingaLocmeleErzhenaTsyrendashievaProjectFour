@@ -6,11 +6,35 @@
     <title>Weather App</title>
     <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Rokkitt&display=swap" rel="stylesheet"> -->
+    <link href="jqueryUi1.12.1.Custom/jqueryUi.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
-    <script src='https://code.jquery.com/jquery-3.5.1.js' integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='
-        crossorigin='anonymous'></script>
+    <main>
+        <div class="wrapper">
+            <div>
+                <form action="#" method="#" name="form" class="ui-widget">
+                    <label for="city" class="srOnly">City</label>
+                    <input type="text" class="cityName" id="city" name="city" placeholder="City">
+                    <button class="submit" type="submit">Submit</button>
+                </form>
+                <h1>Current Weather</h1>
+                <ul>
+                    <li><span class="currentTemp">0</span>°C</li>
+                    <li class="clouds">Cloudy</li>
+                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
+                    <li>Wind: <span class="wind">0</span> km/h</li>
+                    <li>Humidity: <span class="wind">0</span>%</li>
+                </ul>
+
+
+    </main>
+    <script type="text/javascript" src="cityList.json"></script> 
+    <script src='https://code.jquery.com/jquery-3.5.1.js' integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='crossorigin='anonymous'></script>
     <script src="script.js"></script>
+    <script src="jqueryUi1.12.1.Custom/external/jquery/jquery.js"></script>
+    <script src="jqueryUi1.12.1.Custom/jqueryUi.js"></script>
+    
 </body>
 </html>
