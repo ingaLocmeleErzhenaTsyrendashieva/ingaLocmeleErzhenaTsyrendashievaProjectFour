@@ -4,26 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Rokkitt&display=swap" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->   
+    <link rel="stylesheet" type="text/css" href="./styles/sass/style.css">
 </head>
 <body>
     <section>
         <div class="wrapper">
-            <div id="city">
-                <p></p>
+            <!-- current area -->
+            <div class="cityCountry">
+               
             </div>
-            <div id="currentWeather">
-                <p></p>
+            <div class="currentWeather">
+                
             </div>
-            <input type="text" id="userCityInput" placeholder="Enter city" class="userCity" onkeydown="">          
-            <button id="userInputBtn" class="inputBtn">Submit</button>
+            <div class="quotes">
+                
+            </div>
+            <form>
+            <input type="text"  id="userInput" name="cityField" value="" class="userCityInput"/> 
+            <input type="submit" name="submitCity" value="Submit" id="submit" class="submitUserCity" />
+            </form>
         </div>
 
     </section>
     <script src='https://code.jquery.com/jquery-3.5.1.js' integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='
         crossorigin='anonymous'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    
 </body>
 </html>
