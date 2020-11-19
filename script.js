@@ -1,4 +1,14 @@
+// create a namespace object to represent app
+// const weatherApp = {};
 const app = {};
+// store api key within app object
+app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
+// store the root endpoint of the API within app object
+app.api = 'https://api.openweathermap.org/data/2.5/weather';
+// declear variable with default data
+app.cityName = "Toronto";
+app.metric = "metric";
+// global variable
 
 // Get data from JSON file
 const localData = cityList;
@@ -9,16 +19,24 @@ app.idArray = [];
 
 
 // Weather Forecast
-app.weatherForecast = function() {
+app.weatherForecast = function(cityName) {
+    app.cityName = cityName;
     $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&units=metric&appid=b60c0d3d756074360b47925c6dd50cb8",
+        url: app.api,
         dataType: "json",
-        method: "GET"
+        method: "GET",
+        data:{
+            q: app.cityName,
+            appid: app.apiKey,
+            units: app.metric           
+        }
     }).then(function (response) {
-        // console.log(response);
+        console.log(response,"mycode");
+        app.displayWeather(response);
     });
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // Get quotes
 app.quotes = function () {
     $.ajax({
@@ -26,7 +44,7 @@ app.quotes = function () {
         dataType: "json",
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        app.displayQuotes(response);       
     });
 };
 
@@ -34,7 +52,7 @@ app.quotes = function () {
 // jQuery UI script adjusted to search values only by the first letter
 app.jqueryUiAutoFill = function () {
     $(function () {
-        $(".cityName").autocomplete({
+        $(".userCityInput").autocomplete({
             source: function (request, response) {
                 app.results = $.ui.autocomplete.filter(app.cityArray, request.term);
                 response(app.results.slice(0, 10));
@@ -63,27 +81,58 @@ app.makeCityArray = function () {
     app.jqueryUiAutoFill();
 }
 
+// add event listener that takes user's input 
+const userInput = () => {
+   $('form').submit(function(e){
+        e.preventDefault();
+        let userInputCity = $('#userInput').val();
+        //clear form after user hit submit button
+        $("form").trigger("reset");
+        //pass user's city to a function
+        app.weatherForecast(userInputCity);
+   } )
+}
 
+// define function thats displays weather on the page html
+app.displayWeather = (weatherData) => {
+    //convert UTC to local time
+    let localTime = moment.unix(weatherData.dt).utc()
+        .utcOffset(weatherData.timezone/60)
+        .format('ddd MMM D Y hh:mm:ss A ').toString();
+    //round tempreture
+    let tempCelcia = Math.round(weatherData.main.temp);
+    let feelLikeTemp = Math.round(weatherData.main.feels_like);
+    
+    //store data 
+    const currentCityWeather = `<li class="currentCityCountry">${weatherData.name},  ${weatherData.sys.country}</li>
+                                <li class="currentTime"><time datetime="">${localTime}</time></li> 
+                                <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
+                                <li class="currentCloud">${weatherData.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></img></li>
+                                <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
+                                <li class="currentWind"><span class="wind">Wind: ${weatherData.wind.speed}</span>km/h</li>
+                                <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.main.humidity}</span> %</li >
+                                
+                                `;   
+    // used .append to update data when user select city
+    $('.currentWeather').append(currentCityWeather);   
+    
+    
+   
+}
 
-//Get the main object, search by a city.
+// define function that displays quotes on the html page
+app.displayQuotes = (dayQuote) =>{
+    const advice = dayQuote.slip.advice;
+    $('.quotes').html(`<span class="dayQuote">${advice}</span>`);  
+}
+
+//define a method which will initialize the app once the document is ready
 app.init = function () {
+    app.weatherForecast(app.cityName);
     app.makeCityArray();
+    userInput();
     app.quotes();
-
-
-    // Search by city name
-    // $.ajax({
-    //     url: "https://api.openweathermap.org/data/2.5/weather?q=Toronto&units=metric&appid=b60c0d3d756074360b47925c6dd50cb8",
-    //     dataType: "json",
-    //     method: "GET"
-    // }).then(function (response) {
-    //     // console.log(response);
-    //     app.quotes();
-    //     app.weatherForecast();
-    // });
 };
-
-
 
 
 
@@ -95,3 +144,4 @@ app.init = function () {
 
 //Document Ready
 $(() => app.init());
+
