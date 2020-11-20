@@ -16,7 +16,8 @@ const localData = cityList;
 // City name array
 app.cityArray = [];
 app.idArray = [];
-
+app.lon = 'torontolong';
+app.lat = '....'
 
 // Weather Forecast
 app.weatherForecast = function(cityName) {
@@ -26,6 +27,8 @@ app.weatherForecast = function(cityName) {
         dataType: "json",
         method: "GET",
         data:{
+            lat: 
+            lon:app.lon
             q: app.cityName,
             appid: app.apiKey,
             units: app.metric           
@@ -86,6 +89,7 @@ const userInput = () => {
    $('form').submit(function(e){
         e.preventDefault();
         let userInputCity = $('#userInput').val();
+       console.log(userInputCity,"userinput");
         //clear form after user hit submit button
         $("form").trigger("reset");
         //pass user's city to a function

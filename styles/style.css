@@ -296,18 +296,10 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: stretch;
-      -ms-flex-pack: stretch;
-          justify-content: stretch;
+  background-color: blue;
 }
 
 .sideSection {
-  margin: 0;
-  margin-left: calc(25% - 285px);
-  max-width: 285px;
-}
-
-.sideWeather {
   background-color: black;
   width: 25%;
   display: -webkit-box;
@@ -319,8 +311,14 @@ main {
   min-height: 80%;
 }
 
+.sideWeather {
+  background-color: red;
+  margin: 0;
+  margin-left: calc(25% - 285px);
+  max-width: 285px;
+}
+
 .bottomSection {
-  background-color: black;
   min-height: 20%;
 }
 
@@ -335,4 +333,10 @@ main {
 
 .bottomWeather ul {
   width: 20%;
+}
+
+.imageQuote {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  background-color: yellow;
 }
