@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->    
+    <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->   
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Rokkitt&display=swap" rel="stylesheet"> -->
     <link href="jqueryUi1.12.1.Custom/jqueryUi.css" rel="stylesheet">   
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
 
@@ -14,10 +15,11 @@
         <section class="sideWeather">
             <div class="sideSection">
                 <form action="#" method="#" name="form" class="ui-widget">
-                    <label for="city" class="srOnly">City</label>
-                    <input type="text" id="userInput" name="cityField" value="" class="userCityInput" />
-                    <input type="submit" name="submitCity" value="Submit" id="submit" class="submitUserCity"/>
+                    <label for="userInput" class="srOnly">City</label>
+                    <input type="text" class="cityName" id="userInput" name="cityField" placeholder="City">
+                    <button class="submitUserCity" id="submit" type="submit">Submit</button>
                 </form>
+                <div class="errorMessage"></div>
                 <div>
                     <h1>Current Weather</h1>
                     <ul class="currentWeather"></ul>                

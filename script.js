@@ -1,41 +1,184 @@
-// create a namespace object to represent app
-// const weatherApp = {};
 const app = {};
-// store api key within app object
-app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
-// store the root endpoint of the API within app object
-app.api = 'https://api.openweathermap.org/data/2.5/weather';
-// declear variable with default data
-app.cityName = "Toronto";
-app.metric = "metric";
-// global variable
 
 // Get data from JSON file
 const localData = cityList;
 
 // City name array
 app.cityArray = [];
-app.idArray = [];
+// lat and lon for Toronto as a default valu
+app.latitude = 43.700111;
+app.longitude = -79.416298;
+// Units of measure
+app.metric = "metric";
+// store the root endpoint of the API within app object
+app.api = 'https://api.openweathermap.org/data/2.5/onecall';
+// store api key within app object
+app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
 
-// Weather Forecast
-app.weatherForecast = function(cityName) {
-    app.cityName = cityName;
+
+
+
+
+// define function thats displays weather on the page html
+app.displayWeather = (weatherData) => {
+    //convert UTC to local time
+    let localTime = moment.unix(weatherData.dt).utc()
+        .utcOffset(weatherData.timezone / 60)
+        .format('ddd MMM D Y hh:mm:ss A ').toString();
+    //round tempreture
+    let tempCelcia = Math.round(weatherData.main.temp);
+    let feelLikeTemp = Math.round(weatherData.main.feels_like);
+    //store data 
+    const currentCityWeather = `<li class="currentCityCountry">${weatherData.name},  ${weatherData.sys.country}</li>
+                                <li class="currentTime"><time datetime="">${localTime}</time></li> 
+                                <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
+                                <li class="currentCloud">${weatherData.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></img></li>
+                                <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
+                                <li class="currentWind"><span class="wind">Wind: ${weatherData.wind.speed}</span>km/h</li>
+                                <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.main.humidity}</span> %</li>`;
+    // used .append to update data when user select city
+    $('.currentWeather').append(currentCityWeather);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Weather Forecast AJAX call
+app.weatherForecast = function () {
     $.ajax({
         url: app.api,
         dataType: "json",
         method: "GET",
-        data:{
-            q: app.cityName,
+        data: {
+            lat: app.latitude,
+            lon: app.longitude,
             appid: app.apiKey,
-            units: app.metric           
+            units: app.metric,
+            exclude: "minutely"
         }
     }).then(function (response) {
-        console.log(response,"mycode");
+        console.log(response);
         app.displayWeather(response);
     });
 }
 
+// Collect user's input
+app.userInput = function () {
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        app.userInputCity = $('#userInput').val();
+        //Check if the entry is valid
+        if (app.userInputCity != ""){
+            for (let i = 0; i < app.cityArray.length; i++){
+                if (app.userInputCity == app.cityArray[i].label){
+                    console.log("matches");
+                    //pass user's input to a function
+                    app.latitude = app.cityArray[i].lat;
+                    app.longitude = app.cityArray[i].lon;
+                    //Send Ajax for chosen city
+                    app.weatherForecast();
+                    $(this).trigger("reset");
+                    return false;
+                }
+            }
+            for (let i = 0; i < app.cityArray.length; i++) {
+                if (app.userInputCity !== app.cityArray[i].label) {
+                    //Print error message
+                    $(".errorMessage").empty().append(`<p>Country is not on the list!</p>`).fadeIn().delay(1000).fadeOut().delay(500);
+                    $(this).trigger("reset");
+                    return false;
+                }
+            }
+        }
+        else {
+            console.log("empty");
+            //Print error message
+            $(".errorMessage").empty().append(`<p>The field is empty!</p>`).fadeIn().delay(1000).fadeOut().delay(500);
+        }
+        //clear form after user hit submit button
+        $(this).trigger("reset");
+    });
+}
+
+// Function for jQuery UI (this part of the code is adjusted jQuery UI) autofill country
+// adding aditional method to show the end of country name in the input field
+// adding aditional method to enter the end of the city if clicked out of the input field
+app.jQueryUiFunction = function (location) {
+    let firstElement = $(location).data("uiAutocomplete").menu.element[0].children[0]
+        , inpt = $(location)
+        , original = inpt.val()
+        , firstElementText = $(firstElement).text();
+    /*
+        here we want to make sure that we're not matching something that doesn't start
+        with what was typed in 
+    */
+    if (firstElementText.toLowerCase().indexOf(original.toLowerCase()) === 0) {
+        inpt.val(firstElementText);//change the input to the first match
+
+        inpt[0].selectionStart = original.length; //highlight from end of input
+        inpt[0].selectionEnd = firstElementText.length; //highlight to the end
+        // $("#zoominmap").click(); // trigger click on mobile
+    }
+}
+// adding aditional method to decrease results to 10 by using slice
+// jQuery UI script adjusted to search values only by the first letter
+app.jqueryUiAutoFill = function () {
+    $(function () {
+        $(".cityName").autocomplete({
+            source: function (request, response) {
+                app.results = $.ui.autocomplete.filter(app.cityArray, request.term);
+                response(app.results.slice(0, 10));
+            },
+            select: function (event, ui) {
+            },
+            open: function (event, ui) {
+                app.jQueryUiFunction(this);
+            },
+            close: function (event, ui) {
+                app.jQueryUiFunction(this);
+            }
+        });
+        // Collect user's input
+        app.userInput();
+    });
+}
+
+// Add city names and IDs as objects to the cityArray // Exclude empty fields
+app.makeCityArray = function () {
+    for (let i = 0; i < localData.length; i++) {
+        app.addNameToArray = localData[i].name;
+        app.addStateToArray = localData[i].state;
+        app.addCountryToArray = localData[i].country;
+        app.addLonToArray = localData[i].coord.lon;
+        app.addLatToArray = localData[i].coord.lat;
+        if (app.addCountryToArray !== "" && app.addNameToArray !== "" && app.addStateToArray !== "") {
+            let eachCityObject  = { 
+                "label": `${app.addNameToArray}, ${app.addCountryToArray}`,
+                "lon": `${app.addLonToArray}`,
+                "lat": `${app.addLatToArray}`
+            };
+            app.cityArray.push(eachCityObject);
+        }
+        else if (app.addCountryToArray !== "" && app.addNameToArray !== "") {
+            let eachCityObject = {
+                "label": `${app.addNameToArray}, ${app.addCountryToArray}`,
+                "lon": `${app.addLonToArray}`,
+                "lat": `${app.addLatToArray}`
+            };
+            app.cityArray.push(eachCityObject);
+        }
+    }
+    // Call jQuery UI autofill function
+    app.jqueryUiAutoFill();
+}
+
+// define function that displays quotes on the html page
+app.displayQuotes = (dayQuote) => {
+    const advice = dayQuote.slip.advice;
+    $('.quotes').html(`<span class="dayQuote">${advice}</span>`);
+}
 
 // Get quotes
 app.quotes = function () {
@@ -44,104 +187,16 @@ app.quotes = function () {
         dataType: "json",
         method: "GET"
     }).then(function (response) {
-        app.displayQuotes(response);       
+        app.displayQuotes(response);
     });
 };
 
-//Function for jQuery UI, // adding aditional method to decrease results to 10 by using slice
-// jQuery UI script adjusted to search values only by the first letter
-app.jqueryUiAutoFill = function () {
-    $(function () {
-        $(".userCityInput").autocomplete({
-            source: function (request, response) {
-                app.results = $.ui.autocomplete.filter(app.cityArray, request.term);
-                response(app.results.slice(0, 10));
-            }
-        });
-    });
-}
-
-// Add city names to the cityArray // Exclude empty fields
-app.makeCityArray = function () {
-    for (let i = 0; i < localData.length; i++) {
-        app.addNameToArray = localData[i].name;
-        app.addStateToArray = localData[i].state;
-        app.addCountryToArray = localData[i].country;
-        app.addIdToArray = localData[i].id;
-        if (app.addCountryToArray !== "" && app.addNameToArray !== "" && app.addStateToArray !== "") {
-            app.cityArray.push(`${app.addNameToArray}, ${app.addStateToArray}, ${app.addCountryToArray}`);
-            app.idArray.push(`${app.addIdToArray}`);
-        }
-        else if (app.addCountryToArray !== "" && app.addNameToArray !== "") {
-            app.cityArray.push(`${app.addNameToArray}, ${app.addCountryToArray}`);
-            app.idArray.push(`${app.addIdToArray}`);
-        }
-    }
-    // Call jQuery UI autofill function
-    app.jqueryUiAutoFill();
-}
-
-// add event listener that takes user's input 
-const userInput = () => {
-   $('form').submit(function(e){
-        e.preventDefault();
-        let userInputCity = $('#userInput').val();
-        //clear form after user hit submit button
-        $("form").trigger("reset");
-        //pass user's city to a function
-        app.weatherForecast(userInputCity);
-   } )
-}
-
-// define function thats displays weather on the page html
-app.displayWeather = (weatherData) => {
-    //convert UTC to local time
-    let localTime = moment.unix(weatherData.dt).utc()
-        .utcOffset(weatherData.timezone/60)
-        .format('ddd MMM D Y hh:mm:ss A ').toString();
-    //round tempreture
-    let tempCelcia = Math.round(weatherData.main.temp);
-    let feelLikeTemp = Math.round(weatherData.main.feels_like);
-    
-    //store data 
-    const currentCityWeather = `<li class="currentCityCountry">${weatherData.name},  ${weatherData.sys.country}</li>
-                                <li class="currentTime"><time datetime="">${localTime}</time></li> 
-                                <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
-                                <li class="currentCloud">${weatherData.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></img></li>
-                                <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
-                                <li class="currentWind"><span class="wind">Wind: ${weatherData.wind.speed}</span>km/h</li>
-                                <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.main.humidity}</span> %</li >
-                                
-                                `;   
-    // used .append to update data when user select city
-    $('.currentWeather').append(currentCityWeather);   
-    
-    
-   
-}
-
-// define function that displays quotes on the html page
-app.displayQuotes = (dayQuote) =>{
-    const advice = dayQuote.slip.advice;
-    $('.quotes').html(`<span class="dayQuote">${advice}</span>`);  
-}
-
-//define a method which will initialize the app once the document is ready
+//Get the main object, search by a city.
 app.init = function () {
-    app.weatherForecast(app.cityName);
+    $("form").trigger("reset");
     app.makeCityArray();
-    userInput();
     app.quotes();
 };
 
-
-
-
-
-
-
-
-
 //Document Ready
 $(() => app.init());
-
