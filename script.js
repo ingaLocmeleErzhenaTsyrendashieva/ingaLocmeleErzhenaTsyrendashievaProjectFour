@@ -127,7 +127,7 @@ app.weatherForecast = function () {
         app.displayWeatherForecast(response);
         app.displayWeatherHourly(response);
     });
-}
+} 
 
 // Collect user's input
 app.userInput = function () {
