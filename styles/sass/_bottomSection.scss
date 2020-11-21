@@ -1,6 +1,10 @@
 .bottomSection {
     background-color: black;
     min-height: 20%;
+    ul {
+        max-width: 110px;
+        max-height: 110px;
+    }
 }
 
 .bottomWeather {
@@ -18,7 +22,7 @@
 }
 
 .cloudIcon img {
-    width: 60%;
+    width: 50%;
 }
 
 .currentTemp {
