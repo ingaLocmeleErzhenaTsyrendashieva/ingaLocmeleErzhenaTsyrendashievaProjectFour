@@ -50,10 +50,6 @@ img {
     display: block;
 }
 
-// figure {
-//     margin: 0;
-// }
-
 a, button {
     // background: $accent;
     line-height: 3.2rem;
@@ -75,10 +71,19 @@ a, button {
 
 ul {
     list-style: none;
+    border-radius: 50%;
+    background-color: white;
+    width: 150px;
+    height: 150px;
 }
 
 h1 {
     font-size: 2.5rem;
+}
+
+h2 {
+    color: black;
+    text-transform: uppercase;
 }
 
 

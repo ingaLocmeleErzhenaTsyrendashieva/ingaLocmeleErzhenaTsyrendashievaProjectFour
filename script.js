@@ -140,14 +140,16 @@ app.weatherForecast = function () {
 
 // Collect user's input
 app.userInput = function () {
-    $('form').on('submit', function (e) {
-        e.preventDefault();
+    $('form').on('submit', function () {
+        // e.preventDefault();
         app.userInputCity = $('#userInput').val();
         //Check if the entry is valid
         if (app.userInputCity != ""){
             for (let i = 0; i < app.cityArray.length; i++){
                 if (app.userInputCity == app.cityArray[i].label){
                     console.log("matches");
+                    //Display city name
+                    $("h2").html(app.userInputCity);
                     //pass user's input to a function
                     app.latitude = app.cityArray[i].lat;
                     app.longitude = app.cityArray[i].lon;
@@ -268,6 +270,8 @@ app.quotes = function () {
 //Get the main object, search by a city.
 app.init = function () {
     $("form").trigger("reset");
+    // Run Toronto AJAX as a default
+    app.weatherForecast();
     app.makeCityArray();
     app.quotes();
 };
