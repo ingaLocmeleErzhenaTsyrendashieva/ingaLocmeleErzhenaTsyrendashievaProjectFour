@@ -19,8 +19,10 @@
 
 .cityAndQuote {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 5%;
+    flex-direction: column;
+    align-items: flex-end;
+    // justify-content: flex-end;
+    margin-right: calc(50% - 570px);
     min-width: 855px;
     // width: calc(50% + 285px);
 }
