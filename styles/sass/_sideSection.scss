@@ -4,21 +4,12 @@
     justify-content: space-between;
     min-height: 80%;
 }
-
-.cityAndQuote {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: calc(50% - 570px);
-    min-width: 855px;
-}
-
 // Top section side part
 .sideSection {
     margin:0;
     margin-left: calc(25% - 285px);
     min-width: 285px;
-}
+}   
 
 .sideWeather {
     background-color: black;
@@ -74,3 +65,87 @@
     margin-bottom: -15px;
 }
 
+
+.cityAndQuote {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: calc(50% - 570px);
+    min-width: 855px;
+    padding: 20px 40px;
+        h2{
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(0, 151, 19, 0.2);
+        }    
+}
+
+form.ui-widget input[type=text]{
+    padding: 10px;
+    border: 3px white solid;
+    float: left;
+    width: 70%;
+    line-height: 2rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    cursor: context-menu;    
+}
+
+form.ui-widget input[type=text]:hover,
+form.ui-widget input[type=text]:focus{
+    background: darkblue;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+}
+
+form.ui-widget button{
+    float: left;
+    width: 30%;
+    padding: 10px;
+    line-height: 2rem;
+    background-color: darkmagenta;
+    color: white;
+    // border: 1px thin white; 
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+}
+
+form.ui-widget button:hover,
+form.ui-widget button:focus
+{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+}
+
+.errorMessage{
+    background-color: red;
+    width: 300px;
+    border-radius: 10px;
+    margin-top: 4px;
+    p{
+        padding: 10px;
+    }
+}
+
+.quotes{
+    quotes: "“"  "„"  ;
+    background: rgba(0, 151, 19, 0.2);     
+    color: black;
+    margin-top: 40px;
+    padding: 20px;
+    q{
+        text-transform: uppercase;
+    }
+}
