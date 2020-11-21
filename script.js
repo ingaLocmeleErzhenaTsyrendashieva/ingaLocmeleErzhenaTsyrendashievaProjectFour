@@ -252,8 +252,8 @@ app.makeCityArray = function () {
 
 // define function that displays quotes on the html page
 app.displayQuotes = (dayQuote) => {
-    const advice = dayQuote.slip.advice;
-    $('.quotes').html(`<span class="dayQuote">${advice}</span>`);
+    app.advice = dayQuote.slip.advice;
+    $('.quotes').html(`<p>${app.advice}</p>`);
 }
 
 // Get quotes
