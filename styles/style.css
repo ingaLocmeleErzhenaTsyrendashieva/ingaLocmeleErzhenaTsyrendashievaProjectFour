@@ -274,8 +274,6 @@ ul {
   list-style: none;
   border-radius: 50%;
   background-color: white;
-  min-width: 120px;
-  min-height: 120px;
 }
 
 h1 {
@@ -307,6 +305,11 @@ main {
   margin: 0;
   margin-left: calc(25% - 285px);
   min-width: 285px;
+}
+
+.sideSection ul {
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .sideWeather {
@@ -350,6 +353,11 @@ main {
   min-height: 20%;
 }
 
+.bottomSection ul {
+  max-width: 110px;
+  max-height: 110px;
+}
+
 .bottomWeather {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -365,7 +373,7 @@ main {
 }
 
 .cloudIcon img {
-  width: 60%;
+  width: 50%;
 }
 
 .currentTemp {

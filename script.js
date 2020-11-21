@@ -16,25 +16,34 @@ app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
 // define function thats displays current weather on the page html
-app.displayWeather = (weatherData) => {
+app.displayWeather = function (weatherData) {
     //convert UTC to local time
-    let localTime = moment.unix(weatherData.current.dt).utc()
+    app.localTime = moment.unix(weatherData.current.dt).utc()
         .utcOffset(weatherData.timezone_offset / 60)
-        .format('MMM Do YY, hh:mm:ss A ').toString();
+        .format('ddd MMM D').toString();
+    app.currentTimeSemantic = moment.unix(weatherData.current.dt).utc()
+        .utcOffset(weatherData.timezone_offset / 60)
+        .format('YYYY-MM-DD').toString();
     //round tempreture
-    let tempCelcia = Math.round(weatherData.current.temp);
-    let feelLikeTemp = Math.round(weatherData.current.feels_like);
+    app.tempCurrentTemp = Math.round(weatherData.current.temp);
+    app.feelLikeTemp = Math.round(weatherData.current.feels_like);
+    app.weatherDescription = weatherData.current.weather[0].description;
+    app.currentWind = weatherData.current.wind_speed;
+    app.currentHumidity = weatherData.current.humidity;
+    app.currentWeatherIcon = weatherData.current.weather[0].icon;
     // empty the ul before fetching and adding new data
     $('.currentWeather').empty();
     //store data 
-    const currentCityWeather = ` <li class="currentTime"><time datetime="">${localTime}</time></li> 
-                                 <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
-                                 <li class="currentCloud">${weatherData.current.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></li>
-                                 <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
-                                 <li class="currentWind"><span class="wind">Wind: ${weatherData.current.wind_speed}</span> km/h</li>
-                                 <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.current.humidity}</span> %</li>`;
+    app.currentCityWeather = `<li class="currentTime"><time datetime="${app.currentTimeSemantic}">${app.localTime}</time></li> 
+                            <li class="currentTemp">${app.tempCurrentTemp} °C</li>
+                            <li class="cloud">${app.weatherDescription}</li>
+                            <li class="cloudIcon">
+                                <img src="styles/assets/${app.currentWeatherIcon}.svg" alt="${app.weatherDescription}"></li>
+                            <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${app.feelLikeTemp}</span> °C</li>
+                            <li class="currentWind">Wind: ${app.currentWind} km/h</li>
+                            <li class="currentHumidity">Humidity: ${app.currentHumidity} %</li>`;
     // used .append to update data when user select city
-    $('.currentWeather').append(currentCityWeather);
+    $('.currentWeather').append(app.currentCityWeather);
 }
 
 // Hourly Forecast 
