@@ -202,15 +202,6 @@ template {
   display: none;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: '';
-  clear: both;
-  height: 0;
-}
-
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -280,10 +271,19 @@ a, button {
 
 ul {
   list-style: none;
+  border-radius: 50%;
+  background-color: white;
+  width: 150px;
+  height: 150px;
 }
 
 h1 {
   font-size: 2.5rem;
+}
+
+h2 {
+  color: black;
+  text-transform: uppercase;
 }
 
 main {
@@ -300,6 +300,12 @@ main {
 }
 
 .sideSection {
+  margin: 0;
+  margin-left: calc(25% - 285px);
+  min-width: 285px;
+}
+
+.sideWeather {
   background-color: black;
   width: calc(50% - 285px);
   display: -webkit-box;
@@ -308,14 +314,27 @@ main {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+.topSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   min-height: 80%;
 }
 
-.sideWeather {
-  background-color: red;
-  margin: 0;
-  margin-left: calc(25% - 285px);
-  max-width: 285px;
+.cityAndQuote {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 5%;
+  min-width: 855px;
 }
 
 .bottomSection {

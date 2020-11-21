@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <!-- <script src="https://kit.fontawesome.com/d50e3b07e2.js" crossorigin="anonymous"></script> -->   
     <!-- <link href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Rokkitt&display=swap" rel="stylesheet"> -->
     <link href="jqueryUi1.12.1.Custom/jqueryUi.css" rel="stylesheet">   
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
@@ -12,128 +11,28 @@
 </head>
 <body>
     <main>
-        <!-- <section class="topSection">
-            <form action="#" method="#" name="form" class="ui-widget">
-                <label for="city" class="srOnly">City</label>
-                <input type="text" id="userInput" name="cityField" value="" class="userCityInput" />
-                <input type="submit" name="submitCity" value="Submit" id="submit" class="submitUserCity" />
-            </form>
-        </section> -->
-        <section class="sideSection">
+        <section class="topSection">
             <div class="sideWeather">
+                <div class="sideSection" aria-live="polite">
+                    <div>
+                        <h1>Current Weather</h1>
+                        <ul class="currentWeather"></ul>                
+                    </div>
+                    <div class="hourlyWeather"></div>
+                </div>
+            </div>
+            <div class="cityAndQuote">
+                <h2>Toronto, CA</h2>
                 <form action="#" method="#" name="form" class="ui-widget">
                     <label for="userInput" class="srOnly">City</label>
                     <input type="text" class="cityName" id="userInput" name="cityField" placeholder="City">
                     <button class="submitUserCity" id="submit" type="submit">Submit</button>
                 </form>
                 <div class="errorMessage"></div>
-                <div>
-                    <h1>Current Weather</h1>
-                    <ul class="currentWeather"></ul>                
-                </div>
-                <div>
-                    <!-- <h2>Next hour</h2> -->
-                    <ul>
-                        <li><time datetime="2018-10-08">Oct 8</time></li>
-                        <li class="cloudIcon">
-                            <img src="styles/amchartsWeatherIcons1.0.0/animated/cloudy.svg" alt="">
-                        </li>
-                        <li><span class="currentTemp">0</span>°C</li>
-                        <li class="cloud">--</li>
-                        <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                        <li>Wind: <span class="wind">0</span> km/h</li>
-                        <li>Humidity: <span class="humidity">0</span>%</li>
-                        <li>Precipitation: <span class="precipitation">0</span>%</li>
-                    </ul>
-                </div>
-                <div>
-                    <!-- <h2>Next 2 hours</h2> -->
-                    <ul>
-                        <li><time datetime="2018-10-08">Oct 8</time></li>
-                        <li class="cloudIcon">
-                            <img src="styles/amchartsWeatherIcons1.0.0/animated/cloudy.svg" alt="">
-                        </li>
-                        <li><span class="currentTemp">0</span>°C</li>
-                        <li class="cloud">--</li>
-                        <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                        <li>Wind: <span class="wind">0</span> km/h</li>
-                        <li>Humidity: <span class="humidity">0</span>%</li>
-                        <li>Precipitation: <span class="precipitation">0</span>%</li>
-                    </ul>
-                </div>
             </div>
         </section>
-        
-        <div class="quote">
-                <h1> Hers is my quotes</h1>
-        </div>
-        <!-- <section class="wrapper imageQuote">
-            <div>
-                <h1>I am here</h1>
-            </div>
-        </section> -->
-        <section class="bottomSection">
+        <section class="bottomSection" aria-live="polite">
             <div class="wrapper bottomWeather">
-                <ul>
-                    <li><time datetime="2018-10-08">Oct 8</time></li>
-                    <li class="cloudIcon">
-                        <!-- <img src="styles/assets/1.jpg" alt=""> -->
-                    </li>
-                    <li><span class="currentTemp">0</span>°C</li>
-                    <li class="cloud">--</li>
-                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                    <li>Wind: <span class="wind">0</span> km/h</li>
-                    <li>Humidity: <span class="humidity">0</span>%</li>
-                    <li>Precipitation: <span class="precipitation">0</span>%</li>
-                </ul>
-                <ul>
-                    <li><time datetime="2018-10-08">Oct 8</time></li>
-                    <li class="cloudIcon">
-                        <!-- <img src="styles/assets/1.jpg" alt=""> -->
-                    </li>
-                    <li><span class="currentTemp">0</span>°C</li>
-                    <li class="cloud">--</li>
-                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                    <li>Wind: <span class="wind">0</span> km/h</li>
-                    <li>Humidity: <span class="humidity">0</span>%</li>
-                    <li>Precipitation: <span class="precipitation">0</span>%</li>
-                </ul>
-                <ul>
-                    <li><time datetime="2018-10-08">Oct 8</time></li>
-                    <li class="cloudIcon">
-                        <!-- <img src="styles/assets/1.jpg" alt=""> -->
-                    </li>
-                    <li><span class="currentTemp">0</span>°C</li>
-                    <li class="cloud">--</li>
-                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                    <li>Wind: <span class="wind">0</span> km/h</li>
-                    <li>Humidity: <span class="humidity">0</span>%</li>
-                    <li>Precipitation: <span class="precipitation">0</span>%</li>
-                </ul>
-                <ul>
-                    <li><time datetime="2018-10-08">Oct 8</time></li>
-                    <li class="cloudIcon">
-                        <!-- <img src="styles/assets/1.jpg" alt=""> -->
-                    </li>
-                    <li><span class="currentTemp">0</span>°C</li>
-                    <li class="cloud">--</li>
-                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                    <li>Wind: <span class="wind">0</span> km/h</li>
-                    <li>Humidity: <span class="humidity">0</span>%</li>
-                    <li>Precipitation: <span class="precipitation">0</span>%</li>
-                </ul>
-                <ul>
-                    <li><time datetime="2018-10-08">Oct 8</time></li>
-                    <li class="cloudIcon">
-                        <!-- <img src="styles/assets/1.jpg" alt=""> -->
-                    </li>
-                    <li><span class="currentTemp">0</span>°C</li>
-                    <li class="cloud">--</li>
-                    <li>Feels Like: <span class="feelsLike">0</span>°C</li>
-                    <li>Wind: <span class="wind">0</span> km/h</li>
-                    <li>Humidity: <span class="humidity">0</span>%</li>
-                    <li>Precipitation: <span class="precipitation">0</span>%</li>
-                </ul>
             </div>
         </section>
     </main>
@@ -142,10 +41,8 @@
     <script src="script.js"></script>
     <script src="jqueryUi1.12.1.Custom/external/jquery/jquery.js"></script>
     <script src="jqueryUi1.12.1.Custom/jqueryUi.js"></script>   
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
     integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
     crossorigin="anonymous"></script>
-    
 </body>
 </html>
