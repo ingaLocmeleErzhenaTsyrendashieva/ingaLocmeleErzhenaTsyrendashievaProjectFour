@@ -28,20 +28,28 @@ app.displayWeather = function (weatherData) {
     app.tempCurrentTemp = Math.round(weatherData.current.temp);
     app.feelLikeTemp = Math.round(weatherData.current.feels_like);
     app.weatherDescription = weatherData.current.weather[0].description;
+    app.weatherDescriptionShort = weatherData.current.weather[0].main;
     app.currentWind = weatherData.current.wind_speed;
     app.currentHumidity = weatherData.current.humidity;
     app.currentWeatherIcon = weatherData.current.weather[0].icon;
     // empty the ul before fetching and adding new data
     $('.currentWeather').empty();
     //store data 
-    app.currentCityWeather = `<li class="currentTime"><time datetime="${app.currentTimeSemantic}">${app.localTime}</time></li> 
-                            <li class="currentTemp">${app.tempCurrentTemp} °C</li>
-                            <li class="cloud">${app.weatherDescription}</li>
-                            <li class="cloudIcon">
-                                <img src="styles/assets/${app.currentWeatherIcon}.svg" alt="${app.weatherDescription}"></li>
-                            <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${app.feelLikeTemp}</span> °C</li>
-                            <li class="currentWind">Wind: ${app.currentWind} km/h</li>
-                            <li class="currentHumidity">Humidity: ${app.currentHumidity} %</li>`;
+    app.currentCityWeather = `<div class="mainCurrWeatherInfo">
+                                <li class="time currentDate"><time datetime="${app.currentTimeSemantic}">${app.localTime}</time></li>
+                                <div class="flexIconDegrees sideCurrent">
+                                    <li class="cloudIcon">
+                                        <img src="styles/assets/${app.currentWeatherIcon}.svg" alt="${app.weatherDescription}">
+                                    </li>
+                                    <li class="currentTemp"><span>${app.tempCurrentTemp}°C</span></li>
+                                </div>
+                                <div>
+                                    <li class="cloud">${app.weatherDescriptionShort}</li>
+                                    <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${app.feelLikeTemp}</span>°C</li>
+                                    <li class="currentWind">Wind: ${app.currentWind} km/h</li>
+                                    <li class="currentHumidity">Humidity: ${app.currentHumidity} %</li>
+                                </div>
+                            </div>`;
     // used .append to update data when user select city
     $('.currentWeather').append(app.currentCityWeather);
 }
@@ -65,15 +73,21 @@ app.displayWeatherHourly = function (weatherData) {
         app.dailyForecast = Math.round(weatherData.hourly[i].temp);
         // Append data to HTML
         $(".hourlyWeather").append(
-            `<ul>
-                <li>${app.dailyForecastTimeHour}</li>
-                <li class="cloudIcon">
-                    <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
-                </li>
-                <li><span class="currentTemp">${app.dailyForecast}</span>°C</li>
-                <li class="cloud">${app.dailyForecastClouds}</li>
-                <li>Feels Like: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
-                <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
+            `<ul class="sideHourlyWeather">
+                <li class="hours">${app.dailyForecastTimeHour}</li>
+                <div class="weatherByHours">
+                    <div class=flexIconDegrees>
+                        <li class="cloudIcon">
+                            <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
+                        </li>
+                        <li class="currentTemp"><span>${app.dailyForecast}°C</span></li>
+                    </div>
+                    <div>
+                        <li class="cloud">${app.dailyForecastClouds}</li>
+                        <li>Feels Like: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
+                        <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
+                    </div>
+                </div>
             </ul>`)
     }
 }
@@ -87,7 +101,7 @@ app.displayWeatherForecast = function (weatherData) {
         //convert UTC to local time
         app.dailyForecastTime = moment.unix(weatherData.daily[i].dt).utc()
         .utcOffset(weatherData.timezone_offset / 60)
-        .format('ddd MMM D').toString();
+        .format('ddd D').toString();
         app.dailyForecastTimeSemantic = moment.unix(weatherData.daily[i].dt).utc()
             .utcOffset(weatherData.timezone_offset / 60)
             .format('YYYY-MM-DD').toString();
@@ -101,12 +115,13 @@ app.displayWeatherForecast = function (weatherData) {
         // Append data to HTML
         $(".bottomWeather").append(
         `<ul>
-            <li><time datetime="${app.dailyForecastTimeSemantic}">${app.dailyForecastTime}</time></li>
-            <li class="cloudIcon">
-                <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
-            </li>
-            <li class="currentTemp">${app.dailyForecast} °C</li>
-
+            <li class="time"><time datetime="${app.dailyForecastTimeSemantic}">${app.dailyForecastTime}</time></li>
+            <div class=flexIconDegrees>
+                <li class="cloudIcon">
+                    <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
+                </li>
+                <li class="currentTemp"><span>${app.dailyForecast}°C</span></li>
+            </div>
         </ul>`)
     }
 }
