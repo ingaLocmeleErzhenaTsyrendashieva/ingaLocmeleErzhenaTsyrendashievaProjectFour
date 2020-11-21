@@ -1,20 +1,4 @@
-.sideSection {
-    margin:0;
-    margin-left: calc(25% - 285px);
-    min-width: 285px;
-    ul {
-        max-width: 150px;
-        max-height: 150px;
-    }
-}
-
-.sideWeather {
-    background-color: black;
-    width: calc(50% - 285px);
-    display: flex;
-    justify-content: flex-end;
-}
-
+// Top section flex
 .topSection {
     display: flex;
     justify-content: space-between;
@@ -28,3 +12,65 @@
     margin-right: calc(50% - 570px);
     min-width: 855px;
 }
+
+// Top section side part
+.sideSection {
+    margin:0;
+    margin-left: calc(25% - 285px);
+    min-width: 285px;
+}
+
+.sideWeather {
+    background-color: black;
+    width: calc(50% - 285px);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mainCurrWeatherInfo {
+    font-size: 1.8rem;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .currentTemp {
+        font-size: 5.5rem;
+    }
+}
+
+.mainCurrWeatherInfo img {
+    width: 100%;
+}
+
+.sideCurrent {
+    margin-bottom: -25px;
+}
+
+.cloud {
+    text-transform: uppercase;
+}
+
+.weatherByHours {
+    display: flex;
+    .flexIconDegrees {
+        width: 50%;
+    }
+}
+
+.sideHourlyWeather {
+    margin-top: 30px;
+}
+
+.hours {
+    font-size: 2.2rem;
+}
+
+.currentDate {
+    font-size: 2.2rem;
+    margin-bottom: -15px;
+}
+

@@ -1,9 +1,18 @@
+// Bottom section
 .bottomSection {
     background-color: black;
     min-height: 20%;
+    display: flex;
+    align-items: center;
     ul {
-        max-width: 110px;
-        max-height: 110px;
+        width: 130px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: white;
     }
 }
 
@@ -12,19 +21,30 @@
     justify-content: space-between;
 }
 
-// .bottomWeather ul {
-//     // width: 20%;
-// }
-
-.cloudIcon, .cloudIcon img, .currentTemp {
-    display: inline;
-    width: 10%;
+.currentTemp {
+    font-size: 2.8rem;
+    margin-left: -5px;
 }
 
-.cloudIcon img {
-    width: 50%;
+.flexIconDegrees {
+    display: flex;
+    width: 100%;
 }
 
 .currentTemp {
-    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    span {
+        display: block;
+    }
+}
+
+.time {
+    text-align: center;
+}
+
+.cloudIcon {
+    margin-left: -5px;
+    width: 50%;
 }
