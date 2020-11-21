@@ -17,7 +17,6 @@ app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
 // define function thats displays current weather on the page html
 app.displayWeather = (weatherData) => {
-    console.log(weatherData, "current weather");
     //convert UTC to local time
     let localTime = moment.unix(weatherData.current.dt).utc()
         .utcOffset(weatherData.timezone_offset / 60)
