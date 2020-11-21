@@ -15,11 +15,30 @@ app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 // store api key within app object
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
-// Hourly Forecast 
-
-app.displayWeatherHourly = function (weatherData) {
+// define function thats displays current weather on the page html
+app.displayWeather = (weatherData) => {
     //convert UTC to local time
+    let localTime = moment.unix(weatherData.current.dt).utc()
+        .utcOffset(weatherData.timezone_offset / 60)
+        .format('MMM Do YY, hh:mm:ss A ').toString();
+    //round tempreture
+    let tempCelcia = Math.round(weatherData.current.temp);
+    let feelLikeTemp = Math.round(weatherData.current.feels_like);
+    // empty the ul before fetching and adding new data
+    $('.currentWeather').empty();
+    //store data 
+    const currentCityWeather = ` <li class="currentTime"><time datetime="">${localTime}</time></li> 
+                                 <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
+                                 <li class="currentCloud">${weatherData.current.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></li>
+                                 <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
+                                 <li class="currentWind"><span class="wind">Wind: ${weatherData.current.wind_speed}</span> km/h</li>
+                                 <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.current.humidity}</span> %</li>`;
+    // used .append to update data when user select city
+    $('.currentWeather').append(currentCityWeather);
+}
 
+// Hourly Forecast 
+app.displayWeatherHourly = function (weatherData) {
     //Current time correct
     $(".hourlyWeather").empty();
 
@@ -52,8 +71,6 @@ app.displayWeatherHourly = function (weatherData) {
 
 // weather forecast function daily
 app.displayWeatherForecast = function (weatherData) {
-    //convert UTC to local time
-
     //Current time correct
     $(".bottomWeather").empty();
 
@@ -88,32 +105,6 @@ app.displayWeatherForecast = function (weatherData) {
 }
 
 
-        ////////////////////////////
-
-
-
-// define function thats displays weather on the page html
-// app.displayWeather = (weatherData) => {
-//     //convert UTC to local time
-//     let localTime = moment.unix(weatherData.dt).utc()
-//         .utcOffset(weatherData.timezone / 60)
-//         .format('ddd MMM D Y hh:mm:ss A ').toString();
-//     //round tempreture
-//     let tempCelcia = Math.round(weatherData.main.temp);
-//     let feelLikeTemp = Math.round(weatherData.main.feels_like);
-//     //store data 
-//     const currentCityWeather = `<li class="currentCityCountry">${weatherData.name},  ${weatherData.sys.country}</li>
-//                                 <li class="currentTime"><time datetime="">${localTime}</time></li> 
-//                                 <li class="currentTemp"><span class="currentCityTemp">${tempCelcia}</span>&#8451;</li>
-//                                 <li class="currentCloud">${weatherData.weather[0].description} <img src="./styles/amchartsWeatherIcons1.0.0/animated/cloudy-day-1.svg" alt="cloudy"></img></li>
-//                                 <li class="currentFeelsLike">Feels Like: <span class="feelsLike">${feelLikeTemp}</span> &#8451;</li>
-//                                 <li class="currentWind"><span class="wind">Wind: ${weatherData.wind.speed}</span>km/h</li>
-//                                 <li class="currentHumidity"><span class="humidity">Humidity: ${weatherData.main.humidity}</span> %</li>`;
-//     // used .append to update data when user select city
-//     $('.currentWeather').append(currentCityWeather);
-// }
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,11 +123,11 @@ app.weatherForecast = function () {
         }
     }).then(function (response) {
         console.log(response);
-        // app.displayWeather(response);
+        app.displayWeather(response);
         app.displayWeatherForecast(response);
         app.displayWeatherHourly(response);
     });
-}
+} 
 
 // Collect user's input
 app.userInput = function () {
