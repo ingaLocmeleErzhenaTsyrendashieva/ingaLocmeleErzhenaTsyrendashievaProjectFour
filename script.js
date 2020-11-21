@@ -52,9 +52,6 @@ app.displayWeatherHourly = function (weatherData) {
 
 // weather forecast function daily
 app.displayWeatherForecast = function (weatherData) {
-    //convert UTC to local time
-
-    //Current time correct
     $(".bottomWeather").empty();
 
     for (i = 0; i < weatherData.daily.length; i++){
@@ -77,16 +74,16 @@ app.displayWeatherForecast = function (weatherData) {
         `<ul>
             <li><time datetime="${app.dailyForecastTimeSemantic}">${app.dailyForecastTime}</time></li>
             <li class="cloudIcon">
-                <!-- <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}"> -->
+                <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
             </li>
-            <li><span class="currentTemp">${app.dailyForecast}</span>°C</li>
-            <li class="cloud">${app.dailyForecastClouds}</li>
-            <li>Feels Like: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
-            <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
+            <li class="currentTemp">${app.dailyForecast} °C</li>
+
         </ul>`)
     }
 }
-
+    // < li class="cloud" > ${ app.dailyForecastClouds }</li >
+    //         <li>Feels Like: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
+    //         <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
 
         ////////////////////////////
 
