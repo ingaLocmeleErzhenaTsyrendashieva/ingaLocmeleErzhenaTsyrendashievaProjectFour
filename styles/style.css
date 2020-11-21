@@ -242,6 +242,7 @@ html {
 }
 
 body {
+  font-family: 'Nunito', sans-serif;
   color: green;
   font-size: 1.6rem;
 }
@@ -273,8 +274,8 @@ ul {
   list-style: none;
   border-radius: 50%;
   background-color: white;
-  width: 150px;
-  height: 150px;
+  min-width: 120px;
+  min-height: 120px;
 }
 
 h1 {
@@ -282,6 +283,7 @@ h1 {
 }
 
 h2 {
+  font-size: 5rem;
   color: black;
   text-transform: uppercase;
 }
@@ -357,6 +359,15 @@ main {
           justify-content: space-between;
 }
 
-.bottomWeather ul {
-  width: 20%;
+.cloudIcon, .cloudIcon img, .currentTemp {
+  display: inline;
+  width: 10%;
+}
+
+.cloudIcon img {
+  width: 60%;
+}
+
+.currentTemp {
+  font-size: 4rem;
 }

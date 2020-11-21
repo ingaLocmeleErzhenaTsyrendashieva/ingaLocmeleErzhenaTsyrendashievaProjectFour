@@ -8,6 +8,19 @@
     justify-content: space-between;
 }
 
-.bottomWeather ul {
-    width: 20%;
+// .bottomWeather ul {
+//     // width: 20%;
+// }
+
+.cloudIcon, .cloudIcon img, .currentTemp {
+    display: inline;
+    width: 10%;
+}
+
+.cloudIcon img {
+    width: 60%;
+}
+
+.currentTemp {
+    font-size: 4rem;
 }
