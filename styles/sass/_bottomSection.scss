@@ -1,7 +1,8 @@
 // Bottom section
 .bottomSection {
     background-color: black;
-    min-height: 20%;
+    height: 25%;
+    min-height: 160px;
     display: flex;
     align-items: center;
     ul {
@@ -47,4 +48,33 @@
 .cloudIcon {
     margin-left: -5px;
     width: 50%;
+}
+
+.hide {
+    display: none;
+}
+
+// Extra daily info 
+
+ul.extraInfo {
+    border-radius: 0;
+    font-size: 1.6rem;
+    height: 150px;
+    padding: 5px;
+}
+
+.extraInfoDaily {
+    margin-top: -8px;
+}
+
+.extraInfo .time {
+    margin-bottom: -10px;
+}
+
+.moreInfo {
+    text-align: center;
+}
+
+.moreWeatherInfoButton {
+    height: 150px;
 }
