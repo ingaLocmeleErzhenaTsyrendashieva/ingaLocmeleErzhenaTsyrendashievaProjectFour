@@ -186,7 +186,7 @@ app.userInput = function () {
         else {
             console.log("empty");
             //Print error message
-            $(".errorMessage").empty().append(`<p>The field is empty!</p>`).fadeIn().delay(1000).fadeOut().delay(500);
+            $(".errorMessage").empty().append(`<p>Please enter a city name!</p>`).fadeIn().delay(2000).fadeOut().delay(500);
         }
         //clear form after user hit submit button
         $(this).trigger("reset");
@@ -268,7 +268,7 @@ app.makeCityArray = function () {
 // define function that displays quotes on the html page
 app.displayQuotes = (dayQuote) => {
     app.advice = dayQuote.slip.advice;
-    $('.quotes').html(`<p>${app.advice}</p>`);
+    $('.quotes').html(`<q>${app.advice}</q>`);
 }
 
 // Get quotes
