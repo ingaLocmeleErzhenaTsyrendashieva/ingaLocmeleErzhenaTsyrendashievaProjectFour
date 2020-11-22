@@ -9,7 +9,7 @@
 }
 
 @mixin robRegFont(){
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     // font-size: $fontSizeLora;
     // letter-spacing: 0px;
     // color: $black;
@@ -35,7 +35,7 @@ html {
 
 body {
     @include nunitoFont();
-    color: green;
+    color: pink;
     font-size: 1.6rem;
 }
 
@@ -46,9 +46,8 @@ img {
 }
 
 button {
-    // @include robFont(2rem, $black);
+    @include nunitoFont();
     text-decoration: none;
-    // padding: 10px 30px;
     border: 3px transparent solid; 
     display: block;
 }

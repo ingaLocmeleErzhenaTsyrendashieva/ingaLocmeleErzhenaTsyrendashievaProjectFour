@@ -154,7 +154,7 @@ app.displayWeather = function (weatherData) {
                                     <li class="cloudIcon">
                                         <img src="styles/assets/${app.currentWeatherIcon}.svg" alt="${app.weatherDescription}">
                                     </li>
-                                    <li class="currentTemp"><span>${app.tempCurrentTemp}°C</span></li>
+                                    <li class="currentTemp currentTempStyle"><span>${app.tempCurrentTemp}°C</span></li>
                                 </div>
                                 <div>
                                     <li class="cloud">${app.weatherDescriptionShort}</li>
