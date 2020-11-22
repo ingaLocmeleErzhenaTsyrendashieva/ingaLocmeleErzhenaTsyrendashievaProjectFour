@@ -404,9 +404,15 @@ main {
 }
 
 .cityAndQuote h2 {
+  font-size: 3.5rem;
+  letter-spacing: 2px;
   margin-bottom: 20px;
   padding: 10px;
   background: rgba(0, 151, 19, 0.2);
+}
+
+form.ui-widget {
+  display: none;
 }
 
 form.ui-widget input[type=text] {
@@ -472,10 +478,29 @@ form.ui-widget button:focus {
   color: black;
   margin-top: 40px;
   padding: 20px;
+  margin-top: auto;
 }
 
 .quotes q {
   text-transform: uppercase;
+}
+
+.hideShowForm {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+.hideShowForm img {
+  width: 40px;
+  float: right;
+  padding-left: 10px;
+}
+
+.hideShowForm:hover {
+  background: rgba(0, 151, 19, 0.2);
+  border: 0;
 }
 
 .bottomSection {
