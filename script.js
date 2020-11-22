@@ -15,6 +15,13 @@ app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 // store api key within app object
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
+$("main").on("click", (".moreWeatherInfoButton"), function () {
+    $(this).children(".forecastWeather").toggleClass("extraInfo");
+    $(this).children(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
+    $(this).find(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
+    $(this).find(".moreInfo").toggleClass("hide");
+});
+
 // define function thats displays current weather on the page html
 app.displayWeather = function (weatherData) {
     //convert UTC to local time
@@ -112,9 +119,11 @@ app.displayWeatherForecast = function (weatherData) {
         //round tempreture
         app.dailyForecastFeelsLike = Math.round(weatherData.daily[i].feels_like.day);
         app.dailyForecast = Math.round(weatherData.daily[i].temp.day);
+        app.dailyForecastNight = Math.round(weatherData.daily[i].temp.night);
+
         // Append data to HTML
         $(".bottomWeather").append(
-        `<ul>
+        `<botton class="moreWeatherInfoButton"><ul class="forecastWeather">
             <li class="time"><time datetime="${app.dailyForecastTimeSemantic}">${app.dailyForecastTime}</time></li>
             <div class=flexIconDegrees>
                 <li class="cloudIcon">
@@ -122,12 +131,16 @@ app.displayWeatherForecast = function (weatherData) {
                 </li>
                 <li class="currentTemp"><span>${app.dailyForecast}°C</span></li>
             </div>
-        </ul>`)
+            <li class="moreInfo">More info</li>
+            <div class="extraWeatherInfo hide">
+                <li class="cloud" > ${ app.dailyForecastClouds}</li>
+                <li> Night: ${app.dailyForecastNight}°C</li>
+                <li>FL: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
+                <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
+            </div>
+        </ul></botton>`)
     }
 }
-    // < li class="cloud" > ${ app.dailyForecastClouds }</li >
-    //         <li>Feels Like: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
-    //         <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -307,7 +307,8 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  min-height: 80%;
+  height: 75%;
+  min-height: 550px;
 }
 
 .cityAndQuote {
@@ -390,7 +391,7 @@ main {
 }
 
 .sideHourlyWeather {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .hours {
@@ -404,7 +405,8 @@ main {
 
 .bottomSection {
   background-color: black;
-  min-height: 20%;
+  height: 25%;
+  min-height: 160px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -476,4 +478,31 @@ main {
 .cloudIcon {
   margin-left: -5px;
   width: 50%;
+}
+
+.hide {
+  display: none;
+}
+
+ul.extraInfo {
+  border-radius: 0;
+  font-size: 1.6rem;
+  height: 150px;
+  padding: 5px;
+}
+
+.extraInfoDaily {
+  margin-top: -8px;
+}
+
+.extraInfo .time {
+  margin-bottom: -10px;
+}
+
+.moreInfo {
+  text-align: center;
+}
+
+.moreWeatherInfoButton {
+  height: 150px;
 }
