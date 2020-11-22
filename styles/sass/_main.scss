@@ -3,9 +3,10 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 600px;
-    height: 100vh;
+    min-height: 100vh;
     background-position: center center;
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
+    justify-content: space-between;
 }
+
