@@ -15,12 +15,15 @@ app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 // store api key within app object
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
-$("main").on("click", (".moreWeatherInfoButton"), function () {
-    $(this).children(".forecastWeather").toggleClass("extraInfo");
-    $(this).children(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
-    $(this).find(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
-    $(this).find(".moreInfo").toggleClass("hide");
-});
+//More info about daily weather
+app.moreDailyInfo = function () {
+    $("main").on("click", (".moreWeatherInfoButton"), function () {
+        $(this).children(".forecastWeather").toggleClass("extraInfo");
+        $(this).children(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
+        $(this).find(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
+        $(this).find(".moreInfo").toggleClass("hide");
+    });
+}
 
 // define function thats displays current weather on the page html
 app.displayWeather = function (weatherData) {
@@ -59,6 +62,8 @@ app.displayWeather = function (weatherData) {
                             </div>`;
     // used .append to update data when user select city
     $('.currentWeather').append(app.currentCityWeather);
+    // More info about the weather
+    app.moreDailyInfo();
 }
 
 // Hourly Forecast 
