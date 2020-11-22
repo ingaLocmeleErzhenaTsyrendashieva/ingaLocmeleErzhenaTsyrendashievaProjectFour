@@ -13,7 +13,7 @@
 }   
 
 .sideWeather {
-    background-color: black;
+    background-color: $test;
     width: calc(50% - 285px);
     display: flex;
     justify-content: flex-end;
@@ -66,9 +66,9 @@
     margin-bottom: -15px;
 }
 
-
+//City and quotes
 .cityAndQuote {
-    background-color: grey;
+    // background-color: grey;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

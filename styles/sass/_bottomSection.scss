@@ -1,6 +1,6 @@
 // Bottom section
 .bottomSection {
-    background-color: black;
+    background-color: $test;
     height: 25%;
     min-height: 160px;
     display: flex;
@@ -71,10 +71,22 @@ ul.extraInfo {
     margin-bottom: -10px;
 }
 
+.extraWeatherInfo {
+    text-align: left;
+}
+
 .moreInfo {
     text-align: center;
 }
 
-.moreWeatherInfoButton {
+button.moreWeatherInfoButton {
     height: 150px;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.bottomSection ul:hover{
+    background-color: red;
 }

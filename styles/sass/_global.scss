@@ -45,22 +45,18 @@ img {
     display: block;
 }
 
-a, button {
-    line-height: 3.2rem;
+button {
+    // @include robFont(2rem, $black);
+    text-decoration: none;
+    // padding: 10px 30px;
+    border: 3px transparent solid; 
     display: block;
 }
 
-a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, textarea:hover, textarea:focus {
+button:hover, button:focus, input:hover, input:focus {
     background: black;
     border: 3px white solid; 
     color: white;
-}
-
-a, button {
-    // @include robFont(2rem, $black);
-    text-decoration: none;
-    padding: 10px 30px;
-    border: 3px transparent solid; 
 }
 
 ul {

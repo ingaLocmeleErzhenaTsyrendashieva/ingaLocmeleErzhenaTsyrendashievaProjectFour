@@ -254,21 +254,16 @@ img {
   display: block;
 }
 
-a, button {
-  line-height: 3.2rem;
+button {
+  text-decoration: none;
+  border: 3px transparent solid;
   display: block;
 }
 
-a:hover, a:focus, button:hover, button:focus, input:hover, input:focus, textarea:hover, textarea:focus {
+button:hover, button:focus, input:hover, input:focus {
   background: black;
   border: 3px white solid;
   color: white;
-}
-
-a, button {
-  text-decoration: none;
-  padding: 10px 30px;
-  border: 3px transparent solid;
 }
 
 ul {
@@ -287,8 +282,11 @@ h2 {
 }
 
 main {
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 600px;
   height: 100vh;
+  background-position: center center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -319,7 +317,7 @@ main {
 }
 
 .sideWeather {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   width: calc(50% - 285px);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -390,7 +388,6 @@ main {
 }
 
 .cityAndQuote {
-  background-color: grey;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -482,7 +479,7 @@ form.ui-widget button:focus {
 }
 
 .bottomSection {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   height: 25%;
   min-height: 160px;
   display: -webkit-box;
@@ -577,10 +574,22 @@ ul.extraInfo {
   margin-bottom: -10px;
 }
 
+.extraWeatherInfo {
+  text-align: left;
+}
+
 .moreInfo {
   text-align: center;
 }
 
-.moreWeatherInfoButton {
+button.moreWeatherInfoButton {
   height: 150px;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.bottomSection ul:hover {
+  background-color: red;
 }
