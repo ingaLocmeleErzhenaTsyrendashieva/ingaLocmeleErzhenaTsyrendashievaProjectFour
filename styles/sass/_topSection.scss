@@ -13,7 +13,7 @@
 }   
 
 .sideWeather {
-    background-color: black;
+    background-color: $test;
     width: calc(50% - 285px);
     display: flex;
     justify-content: flex-end;
@@ -67,8 +67,10 @@
 }
 
 
+//City and quotes
 .cityAndQuote {
-    background-color: grey;
+    // background-color: grey;
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -83,6 +85,7 @@
             background: rgba(0, 151, 19, 0.2);
         }    
 }
+
 
 form.ui-widget{
     display: none;
@@ -153,6 +156,7 @@ form.ui-widget button:focus
     margin-top: 40px;
     padding: 20px;
     margin-top: auto;   
+
     q{
         text-transform: uppercase;
     }
@@ -175,3 +179,4 @@ form.ui-widget button:focus
     background: rgba(0, 151, 19, 0.2);
     border: 0;
 }
+

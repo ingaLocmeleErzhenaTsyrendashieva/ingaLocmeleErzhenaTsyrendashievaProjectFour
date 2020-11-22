@@ -2,7 +2,27 @@ const app = {};
 
 // Get data from JSON file
 const localData = cityList;
-
+// Photo list
+const backgroundPhotoList = {
+    f01d: [1, 2, 3],
+    f01n: [1, 2, 3, 4],
+    f02d: [1, 2, 3, 4, 5, 6],
+    f02n: [1, 2],
+    f03d: [1, 2],
+    f03n: [1, 2, 3, 4],
+    f04d: [1, 2, 3, 4],
+    f04n: [1, 2],
+    f09d: [1, 2, 3, 4],
+    f09n: [1, 2, 3],
+    f10d: [1, 2, 3, 4, 5, 6, 7],
+    f10n: [1, 2],
+    f11d: [1, 2, 3],
+    f11n: [1, 2, 3, 4],
+    f13d: [1, 2, 3, 4],
+    f13n: [1, 2],
+    f50d: [1, 2, 3, 4, 5, 6],
+    f50n: [1, 2, 3, 4, 5]
+}
 // City name array
 app.cityArray = [];
 // lat and lon for Toronto as a default valu
@@ -16,6 +36,76 @@ app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
 
+// Function to change order of the photos
+app.randomOrder = function (folder) {
+    for (let i = 0; i < folder.length; i++) {
+        return randomOrderNum = Math.floor(Math.random() * folder.length) + 1;
+    }
+}
+
+// Function to apply a photo dependin on the current weather
+app.changePhoto = function () {
+    // Select the correct image
+    if (app.currentWeatherIcon == "01d") {
+        app.randomOrder(backgroundPhotoList.f01d);
+    }
+    else if (app.currentWeatherIcon == "01n") {
+        app.randomOrder(backgroundPhotoList.f01n);
+    }
+    else if (app.currentWeatherIcon == "02d") {
+        app.randomOrder(backgroundPhotoList.f02d);
+    }
+    else if (app.currentWeatherIcon == "02n") {
+        app.randomOrder(backgroundPhotoList.f02n);
+    }
+    else if (app.currentWeatherIcon == "03d") {
+        app.randomOrder(backgroundPhotoList.f03d);
+    }
+    else if (app.currentWeatherIcon == "03n") {
+        app.randomOrder(backgroundPhotoList.f03n);
+    }
+    else if (app.currentWeatherIcon == "04d") {
+        app.randomOrder(backgroundPhotoList.f04d);
+    }
+    else if (app.currentWeatherIcon == "04n") {
+        app.randomOrder(backgroundPhotoList.f04n);
+    }
+    else if (app.currentWeatherIcon == "09d") {
+        app.randomOrder(backgroundPhotoList.f09d);
+    }
+    else if (app.currentWeatherIcon == "09n") {
+        app.randomOrder(backgroundPhotoList.f09n);
+    }
+    else if (app.currentWeatherIcon == "10d") {
+        app.randomOrder(backgroundPhotoList.f10d);
+    }
+    else if (app.currentWeatherIcon == "10n") {
+        app.randomOrder(backgroundPhotoList.f10n);
+    }
+    else if (app.currentWeatherIcon == "11d") {
+        app.randomOrder(backgroundPhotoList.f11d);
+    }
+    else if (app.currentWeatherIcon == "11n") {
+        app.randomOrder(backgroundPhotoList.f11n);
+    }
+    else if (app.currentWeatherIcon == "13d") {
+        app.randomOrder(backgroundPhotoList.f13d);
+    }
+    else if (app.currentWeatherIcon == "13n") {
+        app.randomOrder(backgroundPhotoList.f13n);
+    }
+    else if (app.currentWeatherIcon == "50d") {
+        app.randomOrder(backgroundPhotoList.f50d);
+    }
+    else if (app.currentWeatherIcon == "50n") {
+        app.randomOrder(backgroundPhotoList.f50n);
+    }
+
+    //Change the image in CSS
+    app.imageUrl = `styles/assets/photos/${app.currentWeatherIcon}/${randomOrderNum}.jpg`
+    $('main').css('background-image', `url(${app.imageUrl})`);
+
+
 // show and hide form
 app.toogleVisibility = function () {
     if($('.ui-widget').is(":visible")){
@@ -23,11 +113,12 @@ app.toogleVisibility = function () {
     }else{
         $('.ui-widget').show();
     }
+
 }
 
 //More info about daily weather
 app.moreDailyInfo = function () {
-    $("main").on("click", (".moreWeatherInfoButton"), function () {
+    $("main").off("click").on("click", (".moreWeatherInfoButton"), function () {
         $(this).children(".forecastWeather").toggleClass("extraInfo");
         $(this).children(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
         $(this).find(".extraWeatherInfo").toggleClass("extraInfoDaily hide");
@@ -74,15 +165,17 @@ app.displayWeather = function (weatherData) {
                             </div>`;
     // used .append to update data when user select city
     $('.currentWeather').append(app.currentCityWeather);
+    // Change photos depending on the current weather
+    app.changePhoto();
     // More info about the weather
     app.moreDailyInfo();
 }
 
 // Hourly Forecast 
 app.displayWeatherHourly = function (weatherData) {
-    //Current time correct
+    // Empty old fields
     $(".hourlyWeather").empty();
-
+    //Display the next 2 hours
     for (i = 1; i < 3; i++) {
         //convert UTC to local time
         app.dailyForecastTimeHour = moment.unix(weatherData.hourly[i].dt).utc()
@@ -118,9 +211,9 @@ app.displayWeatherHourly = function (weatherData) {
 
 // weather forecast function daily
 app.displayWeatherForecast = function (weatherData) {
-
+    // Empty old fields
     $(".bottomWeather").empty();
-
+    //Display weather info daily
     for (i = 0; i < weatherData.daily.length; i++){
         //convert UTC to local time
         app.dailyForecastTime = moment.unix(weatherData.daily[i].dt).utc()
@@ -140,7 +233,7 @@ app.displayWeatherForecast = function (weatherData) {
 
         // Append data to HTML
         $(".bottomWeather").append(
-        `<botton class="moreWeatherInfoButton"><ul class="forecastWeather">
+        `<button class="moreWeatherInfoButton"><ul class="forecastWeather">
             <li class="time"><time datetime="${app.dailyForecastTimeSemantic}">${app.dailyForecastTime}</time></li>
             <div class=flexIconDegrees>
                 <li class="cloudIcon">
@@ -155,13 +248,10 @@ app.displayWeatherForecast = function (weatherData) {
                 <li>FL: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
                 <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
             </div>
-        </ul></botton>`)
+        </ul></button>`)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Weather Forecast AJAX call
 app.weatherForecast = function () {
     $.ajax({
@@ -277,7 +367,7 @@ app.makeCityArray = function () {
         app.addLatToArray = localData[i].coord.lat;
         if (app.addCountryToArray !== "" && app.addNameToArray !== "" && app.addStateToArray !== "") {
             let eachCityObject  = { 
-                "label": `${app.addNameToArray}, ${app.addCountryToArray}`,
+                "label": `${app.addNameToArray}, ${app.addStateToArray}, ${app.addCountryToArray}`,
                 "lon": `${app.addLonToArray}`,
                 "lat": `${app.addLatToArray}`
             };

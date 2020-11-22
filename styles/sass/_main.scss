@@ -1,14 +1,11 @@
 main {
-    // background: url(./assets/image-1@2x.png);
-    // background-size: cover;
-    // background-repeat: no-repeat;
+    // background: url(./assets/photos/noaa-Led9c1SSNFo-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     min-height: 600px;
     height: 100vh;
-    // background-position: center center;
+    background-position: center center;
     display: flex;
     flex-direction: column;
-    // // justify-content: flex-start;
-    // align-items: flex-start;
-    // justify-content: flex-start;
     justify-content: stretch;
 }
