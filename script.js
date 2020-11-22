@@ -14,6 +14,15 @@ app.metric = "metric";
 app.api = 'https://api.openweathermap.org/data/2.5/onecall';
 // store api key within app object
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
+// show and hide form
+app.toogleVisibility = function (){
+    if ($('#ui-widget').is(":visible")){
+        $('#ui-widget').hide();
+    }else{
+        $('#ui-widget').show();
+    }
+}
+
 
 //More info about daily weather
 app.moreDailyInfo = function () {
@@ -24,6 +33,8 @@ app.moreDailyInfo = function () {
         $(this).find(".moreInfo").toggleClass("hide");
     });
 }
+
+
 
 // define function thats displays current weather on the page html
 app.displayWeather = function (weatherData) {
@@ -180,12 +191,13 @@ app.userInput = function () {
         if (app.userInputCity != ""){
             for (let i = 0; i < app.cityArray.length; i++){
                 if (app.userInputCity == app.cityArray[i].label){
-                    console.log("matches");
                     //Display city name
                     $("h2").html(app.userInputCity);
                     //pass user's input to a function
                     app.latitude = app.cityArray[i].lat;
                     app.longitude = app.cityArray[i].lon;
+                    // hide search form after submiting input
+                    $('#ui-widget').hide();
                     //Send Ajax for chosen city
                     app.weatherForecast();
                     $(this).trigger("reset");
