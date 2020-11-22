@@ -104,7 +104,7 @@ app.changePhoto = function () {
     //Change the image in CSS
     app.imageUrl = `styles/assets/photos/${app.currentWeatherIcon}/${randomOrderNum}.jpg`
     $('main').css('background-image', `url(${app.imageUrl})`);
-
+}
 
 // show and hide form
 app.toogleVisibility = function () {
