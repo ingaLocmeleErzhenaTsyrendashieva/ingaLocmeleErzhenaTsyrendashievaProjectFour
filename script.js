@@ -1,3 +1,4 @@
+
 // If API doesn't load, show error;
 // Show default city Toronto;
 // Show daily quote;
@@ -11,11 +12,12 @@
 // Display additional info for daily forecast weather;
 
 
+// Create app namespace to hold all methods
 const app = {};
 
 // Get data from JSON file
 const localData = cityList;
-// Photo list
+// crate an object that holds the array of photo list
 const backgroundPhotoList = {
     f01d: [1, 2, 3],
     f01n: [1, 2, 3, 4],
@@ -36,27 +38,26 @@ const backgroundPhotoList = {
     f50d: [1, 2, 3, 4, 5, 6],
     f50n: [1, 2, 3, 4, 5]
 }
-// City name array
+//create a City name array
 app.cityArray = [];
-// lat and lon for Toronto as a default valu
+//lat and lon for Toronto as a default value
 app.latitude = 43.700111;
 app.longitude = -79.416298;
-// Units of measure
+//save the value of metric measure in a variable
 app.metric = "metric";
-// store the root endpoint of the API within app object
+//store the root endpoint of the API within app object
 app.api = 'https://api.openweathermap.org/data/2.5/onecall';
-// store api key within app object
+//store api key within app object
 app.apiKey = 'b60c0d3d756074360b47925c6dd50cb8';
 
-
-// Function to change order of the photos
+//define a function to change order of the photos
 app.randomOrder = function (folder) {
     for (let i = 0; i < folder.length; i++) {
         return randomOrderNum = Math.floor(Math.random() * folder.length) + 1;
     }
 }
 
-// Function to apply a photo dependin on the current weather
+//define a function to apply a photo depending on the current weather
 app.changePhoto = function () {
     // Select the correct image
     if (app.currentWeatherIcon == "01d") {
@@ -119,17 +120,19 @@ app.changePhoto = function () {
     $('main').css('background-image', `url(${app.imageUrl})`);
 }
 
-// show and hide error message
-app.toogleVisibility = function () {
-    if ($('.ui-widget').is(":visible")){
+
+//create event listener on click to show and hide form 
+$(".hideShowForm").click(function(){
+    if($('.ui-widget').is(":visible")){
         $('.ui-widget').hide();
     }
     else {
         $('.ui-widget').show();
     }
 }
+})
 
-//More info about daily weather
+//define a function that shows More info about daily weather
 app.moreDailyInfo = function () {
     $("main").off("click").on("click", (".moreWeatherInfoButton"), function () {
         $(this).children(".forecastWeather").toggleClass("extraInfo");
@@ -148,9 +151,10 @@ app.displayWeather = function (weatherData) {
     app.currentTimeSemantic = moment.unix(weatherData.current.dt).utc()
         .utcOffset(weatherData.timezone_offset / 60)
         .format('YYYY-MM-DD').toString();
-    //round tempreture
+    //round tempreture converted from F to C
     app.tempCurrentTemp = Math.round(weatherData.current.temp);
     app.feelLikeTemp = Math.round(weatherData.current.feels_like);
+    //save fetched data into variables
     app.weatherDescription = weatherData.current.weather[0].description;
     app.weatherDescriptionShort = weatherData.current.weather[0].main;
     app.currentWind = weatherData.current.wind_speed;
@@ -176,13 +180,13 @@ app.displayWeather = function (weatherData) {
                             </div>`;
     // used .append to update data when user select city
     $('.currentWeather').append(app.currentCityWeather);
-    // Change photos depending on the current weather
+    //call a function that changes photos depending on the current weather
     app.changePhoto();
-    // More info about the weather
+    //call a function that shows More info about the weather
     app.moreDailyInfo();
 }
 
-// Hourly Forecast 
+//define a function that fetches and displays data of Hourly Forecast 
 app.displayWeatherHourly = function (weatherData) {
     // Empty old fields
     $(".hourlyWeather").empty();
@@ -192,11 +196,12 @@ app.displayWeatherHourly = function (weatherData) {
         app.dailyForecastTimeHour = moment.unix(weatherData.hourly[i].dt).utc()
             .utcOffset(weatherData.timezone_offset / 60)
             .format('h A ').toString();
+        //save fetched data in variables
         app.dailyForecastClouds = weatherData.hourly[i].weather[0].main;
         app.dailyForecastWind = weatherData.hourly[i].wind_speed;
         app.dailyForecastIcon = weatherData.hourly[i].weather[0].icon;
         app.dailyForecastIconDesc = weatherData.hourly[i].weather[0].description;
-        //round tempreture
+        //round tempreture converted from F to C
         app.dailyForecastFeelsLike = Math.round(weatherData.hourly[i].feels_like);
         app.dailyForecast = Math.round(weatherData.hourly[i].temp);
         // Append data to HTML
@@ -220,7 +225,7 @@ app.displayWeatherHourly = function (weatherData) {
     }
 }
 
-// weather forecast function daily
+//define a function that fetches and displays data of Daily Weather Forecast
 app.displayWeatherForecast = function (weatherData) {
     // Empty old fields
     $(".bottomWeather").empty();
@@ -233,11 +238,12 @@ app.displayWeatherForecast = function (weatherData) {
         app.dailyForecastTimeSemantic = moment.unix(weatherData.daily[i].dt).utc()
             .utcOffset(weatherData.timezone_offset / 60)
             .format('YYYY-MM-DD').toString();
+        //save fetched data into variables
         app.dailyForecastClouds = weatherData.daily[i].weather[0].main;
         app.dailyForecastWind = weatherData.daily[i].wind_speed;
         app.dailyForecastIcon = weatherData.daily[i].weather[0].icon;
         app.dailyForecastIconDesc = weatherData.daily[i].weather[0].description;
-        //round tempreture
+        //round tempreture converted from F to C
         app.dailyForecastFeelsLike = Math.round(weatherData.daily[i].feels_like.day);
         app.dailyForecast = Math.round(weatherData.daily[i].temp.day);
         app.dailyForecastNight = Math.round(weatherData.daily[i].temp.night);
@@ -262,8 +268,7 @@ app.displayWeatherForecast = function (weatherData) {
         </ul></button>`)
     }
 }
-
-// Weather Forecast AJAX call
+//define function that calls .ajax API request for Weather Forecast
 app.weatherForecast = function () {
     $.ajax({
         url: app.api,
@@ -275,37 +280,59 @@ app.weatherForecast = function () {
             appid: app.apiKey,
             units: app.metric,
             exclude: "minutely"
+        },
+        //if API request is successful return data
+        success: function (response) {
+            app.displayWeather(response);
+            app.displayWeatherForecast(response);
+            app.displayWeatherHourly(response);
+        },
+        //if API request is failed display error message to a user
+        error: function () {
+             $('.errorWeatherAPI').html(`<div class="errorAPIMessage">   
+                                            <div class="messageErrorBox">
+                                                <img src="./styles/assets/sadSunClouds.png" alt="sad sun">
+                                                <p>Oops! Something went wrong.</p>
+                                                <p>The page didn't load Weather Map correctly.</p>
+                                                <a class="cancelErrorMsg">Ok</a>
+                                            </div>
+                                        </div>`);  
+            // function to hide windowError after pressing Ok button
+            $('.cancelErrorMsg').click(function () {
+                $('.errorWeatherAPI').hide();
+                //reload the page to try call API weather forecast
+                window.location.reload();
+            }
+            )        
         }
-    }).then(function (response) {
-        app.displayWeather(response);
-        app.displayWeatherForecast(response);
-        app.displayWeatherHourly(response);
-    });
-} 
+  })
+}
+
 
 // Collect user's input
 app.userInput = function () {
     $('form').on('submit', function () {
-        // e.preventDefault();
         app.userInputCity = $('#userInput').val();
         //Check if the entry is valid
         if (app.userInputCity != ""){
             for (let i = 0; i < app.cityArray.length; i++){
+                //check if input city is in the array list of the city and country
                 if (app.userInputCity == app.cityArray[i].label){
                     //Display city name
                     $("h2").html(app.userInputCity);
                     //pass user's input to a function
                     app.latitude = app.cityArray[i].lat;
                     app.longitude = app.cityArray[i].lon;
-                    // hide search form after submiting input
+                    //hide search form after submiting input
                     $('.ui-widget').hide();
-                    //Send Ajax for chosen city
+                    //call a function that send ajax API request for chosen city
                     app.weatherForecast();
                     $(this).trigger("reset");
                     return false;
                 }
             }
             for (let i = 0; i < app.cityArray.length; i++) {
+                //check if input city is in the array list of the city and country
                 if (app.userInputCity !== app.cityArray[i].label) {
                     //Print error message
                     $(".errorMessage").empty().append(`<p>Country is not on the list!</p>`).fadeIn().delay(1000).fadeOut().delay(500);
@@ -315,7 +342,8 @@ app.userInput = function () {
             }
         }
         else {
-            //Print error message
+
+            // if user pressed submit button with no value, return an error message
             $(".errorMessage").empty().append(`<p>Please enter a city name!</p>`).fadeIn().delay(2000).fadeOut().delay(500);
         }
         //clear form after user hit submit button
@@ -364,14 +392,17 @@ app.jqueryUiAutoFill = function () {
     });
 }
 
-// Add city names and IDs as objects to the cityArray // Exclude empty fields
+//define a function that retrives data from cityList.json file
+//and pushes in the cityArray // Exclude empty fields
 app.makeCityArray = function () {
     for (let i = 0; i < localData.length; i++) {
+        //save data in namespaced variables
         app.addNameToArray = localData[i].name;
         app.addStateToArray = localData[i].state;
         app.addCountryToArray = localData[i].country;
         app.addLonToArray = localData[i].coord.lon;
         app.addLatToArray = localData[i].coord.lat;
+        //check if it's not empty
         if (app.addCountryToArray !== "" && app.addNameToArray !== "" && app.addStateToArray !== "") {
             let eachCityObject  = { 
                 "label": `${app.addNameToArray}, ${app.addStateToArray}, ${app.addCountryToArray}`,
@@ -395,25 +426,34 @@ app.makeCityArray = function () {
 
 // define function that displays quotes on the html page
 app.displayQuotes = (dayQuote) => {
+    //save string in a variable
     app.advice = dayQuote.slip.advice;
+    //display advice
     $('.quotes').html(`<q>${app.advice}</q>`);
 }
 
-// Get quotes
+//define function that calls .ajax API request for advices
 app.quotes = function () {
     $.ajax({
         url: "https://api.adviceslip.com/advice",
         dataType: "json",
-        method: "GET"
-    }).then(function (response) {
-        app.displayQuotes(response);
-    });
-};
+        method: "GET",
+        //if API request is successful pass the data 
+        success: function (response){
+            //call function that displays advice on the UI
+            app.displayQuotes(response);
+        },
+        //if API request is failed display the default quote
+        error: function() { 
+            $('.quotes').html(`<q>There is no such thing as bad weather, only different kinds of good weather</q>`);
+        }
+})
+}
 
 //Get the main object, search by a city.
 app.init = function () {
     $("form").trigger("reset");
-    // Run Toronto AJAX as a default
+    //Run Toronto AJAX as a default
     app.weatherForecast();
     app.makeCityArray();
     app.quotes();
