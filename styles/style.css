@@ -442,10 +442,6 @@ main {
   border-radius: 2px;
 }
 
-.citySearch a {
-  float: right;
-}
-
 .hideShowForm {
   margin-bottom: 10px;
   padding: 5px 10px 10px;
@@ -478,8 +474,7 @@ main {
   border: 0;
 }
 
-.hideShowForm:hover img:hover,
-.hideShowForm:hover img:focus,
+.hideShowForm:hover img:hover, .hideShowForm:hover img:focus,
 .hideShowForm:focus img:hover,
 .hideShowForm:focus img:focus {
   -webkit-transform: rotate(-80deg);
@@ -548,11 +543,38 @@ form.ui-widget button:focus {
   margin-top: 40px;
   padding: 20px;
   margin-top: auto;
-  font-size: 2.2rem;
-  min-width: 30%;
+  font-size: 2rem;
+  width: 80%;
   font-weight: 600;
   text-align: right;
   text-transform: uppercase;
+}
+
+.hideShowForm {
+  margin-bottom: 10px;
+  padding: 5px 10px 10px;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  text-decoration: underline;
+}
+
+.hideShowForm img {
+  width: 40px;
+  float: right;
+  padding-left: 10px;
+}
+
+.hideShowForm p {
+  font-size: 2rem;
+  display: block;
 }
 
 .errorMessage {
@@ -605,10 +627,6 @@ form.ui-widget button:focus {
   padding: 10px 0;
 }
 
-.hideShowForm p {
-  font-size: 2rem;
-  display: block;
-
 .messageErrorBox a {
   display: inline-block;
   padding: 5px 10px;
@@ -618,8 +636,7 @@ form.ui-widget button:focus {
   border: 2px solid #ffa500;
 }
 
-.messageErrorBox a:hover,
-.messageErrorBox a:focus {
+.messageErrorBox a:hover, a:focus {
   background: #ffff00;
   border: 2px solid #18548B;
   cursor: pointer;
