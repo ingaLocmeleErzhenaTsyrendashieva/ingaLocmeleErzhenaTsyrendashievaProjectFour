@@ -458,7 +458,6 @@ main {
 
 .hideShowForm img {
   width: 35px;
-  float: right;
   padding-left: 10px;
 }
 
@@ -780,6 +779,9 @@ button.moreWeatherInfoButton {
     height: 150px;
     border-radius: 0;
   }
+  .dailyBottom {
+    font-size: 2.3rem;
+  }
 }
 
 @media (max-width: 950px) {
@@ -814,7 +816,10 @@ button.moreWeatherInfoButton {
   }
   .bottomSection ul {
     width: 130px;
-    height: 140px;
+    height: 148px;
+  }
+  .forecastWeather .time {
+    margin-bottom: 10px;
   }
 }
 
