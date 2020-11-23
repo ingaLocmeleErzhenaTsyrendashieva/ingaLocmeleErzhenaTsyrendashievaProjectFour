@@ -1,20 +1,6 @@
 // Fonts
 @mixin nunitoFont(){
     font-family: 'Nunito', sans-serif;
-    // font-size: $fontSizeLora;
-    // letter-spacing: 0px;
-    // color: $black;
-    // line-height: 9.2rem;
-    // text-transform: uppercase;
-}
-
-@mixin robRegFont(){
-    // font-family: 'Roboto', sans-serif;
-    // font-size: $fontSizeLora;
-    // letter-spacing: 0px;
-    // color: $black;
-    // line-height: 9.2rem;
-    // text-transform: uppercase;
 }
 
 // General selectors
@@ -35,7 +21,6 @@ html {
 
 body {
     @include nunitoFont();
-    // color: pink;
     font-size: 1.6rem;
 }
 
@@ -58,7 +43,7 @@ button:hover, input:hover, input:focus {
     color: white;
 }
 
-.button:focus{
+.button:focus {
     color: black;
 }
 

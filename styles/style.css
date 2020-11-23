@@ -605,6 +605,10 @@ form.ui-widget button:focus {
   padding: 10px 0;
 }
 
+.hideShowForm p {
+  font-size: 2rem;
+  display: block;
+
 .messageErrorBox a {
   display: inline-block;
   padding: 5px 10px;
@@ -737,7 +741,7 @@ button.moreWeatherInfoButton {
 
 @media (max-width: 1266px) {
   .sideWeather {
-    width: 50%;
+    width: 47%;
   }
   .sideSection {
     margin-left: 10%;
@@ -747,12 +751,180 @@ button.moreWeatherInfoButton {
   .cityAndQuote {
     min-width: 0;
     margin-right: 5%;
-    width: 50%;
+    width: 53%;
   }
   .cityAndQuote h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+  }
+  .bottomWeather {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .bottomSection ul {
+    width: 105px;
+    height: 150px;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 950px) {
+  .bottomSection ul {
+    width: 160px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 770px) {
+  .sideWeather {
+    width: 52%;
+  }
+  .cityAndQuote {
+    width: 48%;
+  }
+  .mainCurrWeatherInfo {
+    height: 260px;
+    width: 260px;
+  }
+  .currentTempStyle span {
+    margin-left: -18px;
+  }
+  .cloudIcon img {
+    margin-top: -15px;
+  }
+  .cityAndQuote h2 {
+    font-size: 2.1rem;
   }
   .hideShowForm p {
     font-size: 1.8rem;
+  }
+  .bottomSection ul {
+    width: 130px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 670px) {
+  .topSection {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    flex-direction: column-reverse;
+  }
+  .sideWeather {
+    width: 100%;
+  }
+  .cityAndQuote {
+    width: 100%;
+    margin: 0;
+    background-color: turquoise;
+    padding: 0;
+  }
+  .errorMessage {
+    margin-right: 5%;
+  }
+  .quotes {
+    margin: 0 5%;
+    background-color: transparent;
+    padding: 10px 0;
+    font-size: 1.8rem;
+  }
+  .citySearch {
+    width: 100%;
+    background-color: violet;
+    padding-bottom: 15px;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    text-align: right;
+  }
+  form {
+    margin: 0 5%;
+    width: 90%;
+  }
+  .citySearch h2 {
+    margin-left: 5%;
+    background-color: transparent;
+    padding: 15px 0 0;
+    font-size: 3rem;
+    width: 80%;
+  }
+  .citySearch a {
+    width: 10%;
+    background-color: turquoise;
+    margin: 10px 5% 0 10px;
+  }
+  .citySearch img {
+    min-width: 120%;
+  }
+  .hideShowForm p {
+    display: none;
+  }
+  .sideSection {
+    width: 90%;
+    margin: 0 5%;
+  }
+  .currentWeatherCircle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .hourlyWeather {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .weatherByHours .flexIconDegrees {
+    width: 90%;
+  }
+  .weatherByHours .flexIconDegrees img {
+    margin: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .cityAndQuote h2 {
+    font-size: 2.2rem;
+  }
+  .weatherByHours {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .hourlyWeather {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .citySearch a {
+    width: 14%;
+  }
+}
+
+@media (max-width: 450px) {
+  .citySearch a {
+    width: 16%;
+  }
+  .cityAndQuote h2 {
+    font-size: 1.8rem;
+  }
+  .quotes {
+    font-size: 1.6rem;
+    line-height: 1.2;
   }
 }

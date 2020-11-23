@@ -1,4 +1,18 @@
-// declare the namespace
+
+// If API doesn't load, show error;
+// Show default city Toronto;
+// Show daily quote;
+// Show a list of cities to choose from;
+    // Check if city names or countries are not empty on the list, exlude those;
+// Collect user input (city name);
+    // Check if field is not empty and matches;
+// Make an object of icons and display the correct weather icon;
+// Display the weather data on the screen;
+// Show background photo according to the weather;
+// Display additional info for daily forecast weather;
+
+
+// Create app namespace to hold all methods
 const app = {};
 
 // Get data from JSON file
@@ -106,13 +120,16 @@ app.changePhoto = function () {
     $('main').css('background-image', `url(${app.imageUrl})`);
 }
 
+
 //create event listener on click to show and hide form 
 $(".hideShowForm").click(function(){
     if($('.ui-widget').is(":visible")){
         $('.ui-widget').hide();
-    }else{
+    }
+    else {
         $('.ui-widget').show();
     }
+}
 })
 
 //define a function that shows More info about daily weather
@@ -124,6 +141,7 @@ app.moreDailyInfo = function () {
         $(this).find(".moreInfo").toggleClass("hide");
     });
 }
+
 // define function thats displays current weather on the page html
 app.displayWeather = function (weatherData) {
     //convert UTC to local time
@@ -245,7 +263,7 @@ app.displayWeatherForecast = function (weatherData) {
                 <li class="cloud" > ${ app.dailyForecastClouds}</li>
                 <li> Night: ${app.dailyForecastNight}°C</li>
                 <li>FL: <span class="feelsLike">${app.dailyForecastFeelsLike}</span>°C</li>
-                <li>Wind: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
+                <li>W: <span class="wind">${app.dailyForecastWind}</span> km/h</li>
             </div>
         </ul></button>`)
     }
@@ -265,15 +283,13 @@ app.weatherForecast = function () {
         },
         //if API request is successful return data
         success: function (response) {
-            console.log(response);
             app.displayWeather(response);
             app.displayWeatherForecast(response);
             app.displayWeatherHourly(response);
         },
         //if API request is failed display error message to a user
         error: function () {
-            console.log("weather API failed");    
-            $('.errorWeatherAPI').html(`<div class="errorAPIMessage">   
+             $('.errorWeatherAPI').html(`<div class="errorAPIMessage">   
                                             <div class="messageErrorBox">
                                                 <img src="./styles/assets/sadSunClouds.png" alt="sad sun">
                                                 <p>Oops! Something went wrong.</p>
@@ -289,8 +305,9 @@ app.weatherForecast = function () {
             }
             )        
         }
-})
+  })
 }
+
 
 // Collect user's input
 app.userInput = function () {
@@ -325,6 +342,7 @@ app.userInput = function () {
             }
         }
         else {
+
             // if user pressed submit button with no value, return an error message
             $(".errorMessage").empty().append(`<p>Please enter a city name!</p>`).fadeIn().delay(2000).fadeOut().delay(500);
         }
@@ -341,16 +359,14 @@ app.jQueryUiFunction = function (location) {
         , inpt = $(location)
         , original = inpt.val()
         , firstElementText = $(firstElement).text();
-    /*
-        here we want to make sure that we're not matching something that doesn't start
-        with what was typed in 
-    */
+    // Check if matching is done by first letters
     if (firstElementText.toLowerCase().indexOf(original.toLowerCase()) === 0) {
-        inpt.val(firstElementText);//change the input to the first match
-
-        inpt[0].selectionStart = original.length; //highlight from end of input
-        inpt[0].selectionEnd = firstElementText.length; //highlight to the end
-        // $("#zoominmap").click(); // trigger click on mobile
+        //change the input to the first match
+        inpt.val(firstElementText);
+        //highlight from end of input
+        inpt[0].selectionStart = original.length; 
+        //highlight to the end
+        inpt[0].selectionEnd = firstElementText.length;
     }
 }
 // adding aditional method to decrease results to 10 by using slice
