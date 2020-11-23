@@ -261,7 +261,6 @@ button {
 }
 
 button:hover, input:hover, input:focus {
-  background: black;
   border: 3px white solid;
   color: white;
 }
@@ -323,7 +322,6 @@ main {
 }
 
 .sideSection h1 {
-  text-align: center;
   letter-spacing: 1.5px;
 }
 
@@ -344,7 +342,7 @@ main {
   width: 270px;
   height: 270px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -602,7 +600,7 @@ form.ui-widget button:focus {
 .messageErrorBox {
   position: absolute;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   font-weight: bold;
   text-align: center;
@@ -668,7 +666,7 @@ form.ui-widget button:focus {
           justify-content: center;
   padding: 10px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .bottomWeather {
@@ -834,7 +832,7 @@ button.moreWeatherInfoButton {
   .cityAndQuote {
     width: 100%;
     margin: 0;
-    background-color: turquoise;
+    background-color: rgba(39, 39, 39, 0.9);
     padding: 0;
   }
   .errorMessage {
@@ -848,7 +846,6 @@ button.moreWeatherInfoButton {
   }
   .citySearch {
     width: 100%;
-    background-color: violet;
     padding-bottom: 15px;
     -webkit-box-align: end;
         -ms-flex-align: end;
@@ -872,8 +869,11 @@ button.moreWeatherInfoButton {
   }
   .citySearch a {
     width: 10%;
-    background-color: turquoise;
+    background-color: rgba(43, 45, 66, 0.8);
     margin: 10px 5% 0 10px;
+  }
+  .citySearch a:focus {
+    background-color: rgba(255, 255, 255, 0.8);
   }
   .citySearch img {
     min-width: 120%;
