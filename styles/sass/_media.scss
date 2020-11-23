@@ -103,7 +103,7 @@
     .cityAndQuote {
         width: 100%;
         margin: 0;
-        background-color: turquoise;
+        background-color: $quanternaryTransperentDark;
         padding: 0;
     }
 
@@ -120,7 +120,6 @@
 
     .citySearch {
         width: 100%;
-        background-color: violet;
         padding-bottom: 15px;
         align-items: flex-end;
         flex-direction: row;
@@ -142,8 +141,12 @@
 
     .citySearch a {
         width: 10%;
-        background-color: turquoise;
+        background-color: $primaryTransperent;
         margin: 10px 5% 0 10px;
+    }
+
+    .citySearch a:focus {
+        background-color: $tertiaryTransperent;
     }
 
     .citySearch img {
