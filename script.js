@@ -122,15 +122,16 @@ app.changePhoto = function () {
 
 
 //create event listener on click to show and hide form 
-$(".hideShowForm").click(function(){
-    if($('.ui-widget').is(":visible")){
-        $('.ui-widget').hide();
-    }
-    else {
-        $('.ui-widget').show();
-    }
+app.hideShowForm = function() {
+    $(".hideShowForm").click(function(){
+        if($('.ui-widget').is(":visible")){
+            $('.ui-widget').hide();
+        }
+        else {
+            $('.ui-widget').show();
+        }
+    });
 }
-})
 
 //define a function that shows More info about daily weather
 app.moreDailyInfo = function () {
@@ -289,7 +290,7 @@ app.weatherForecast = function () {
         },
         //if API request is failed display error message to a user
         error: function () {
-             $('.errorWeatherAPI').html(`<div class="errorAPIMessage">   
+            $('.errorWeatherAPI').html(`<div class="errorAPIMessage">   
                                             <div class="messageErrorBox">
                                                 <img src="./styles/assets/sadSunClouds.png" alt="sad sun">
                                                 <p>Oops! Something went wrong.</p>
@@ -305,7 +306,7 @@ app.weatherForecast = function () {
             }
             )        
         }
-  })
+    })
 }
 
 
@@ -457,6 +458,7 @@ app.init = function () {
     app.weatherForecast();
     app.makeCityArray();
     app.quotes();
+    app.hideShowForm();
 };
 
 //Document Ready
