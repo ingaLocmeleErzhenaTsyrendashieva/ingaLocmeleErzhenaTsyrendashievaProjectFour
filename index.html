@@ -14,7 +14,7 @@
         <section class="topSection">
             <div class="sideWeather">
                 <div class="sideSection" aria-live="polite">
-                    <div>
+                    <div class="currentWeatherCircle">
                         <h1>Current Weather</h1>
                         <ul class="currentWeather"></ul>                
                     </div>
@@ -26,9 +26,9 @@
                     <h2>Toronto, CA</h2>
                     <a class="hideShowForm" id="showHideForm" onclick="app.toogleVisibility()">
                         <p>Find your city</p>
-                        <img src="./styles/assets/search.png" alt="Search City">
+                        <img src="./styles/assets/search.png" title="Find Your City" alt="Search City">
                     </a>
-                </div>           
+                </div>
                 <form action="#" method="#" name="form" class="ui-widget">
                     <label for="userInput" class="srOnly">Search By City</label>
                     <input type="text" class="cityName" id="userInput" name="cityField" placeholder="Search By City">
