@@ -22,20 +22,23 @@
                 </div>
             </div>
             <div class="cityAndQuote">
-                <h2>Toronto, CA</h2>
-                <a class="hideShowForm" id="showHideForm" onclick="app.toogleVisibility()">Find your city<img src="./styles/assets/search.png" alt="Search City"></a>                
+                <div class="errorWeatherAPI"></div>
+                <div class="citySearchBox">
+                    <h2>Toronto, CA</h2>
+                    <a class="hideShowForm" id="showHideForm">Find your city<img src="./styles/assets/search.png" alt="Search City"></a>                
+                </div>
                 <form action="#" method="#" name="form" class="ui-widget">
                     <label for="userInput" class="srOnly">Search By City</label>
                     <input type="text" class="cityName" id="userInput" name="cityField" placeholder="Search By City">
                     <button class="submitUserCity" id="submit" type="submit">Submit</button>
                 </form>
                 <div class="errorMessage"></div>
-                <div class="quotes"></div>
+                <div class="quotes"></div>                
             </div>
         </section>
         <section class="bottomSection" aria-live="polite">
             <div class="wrapper bottomWeather"></div>
-        </section>
+        </section>        
     </main>
     <script type="text/javascript" src="cityList.json"></script> 
     <script src='https://code.jquery.com/jquery-3.5.1.js' integrity='sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc='crossorigin='anonymous'></script>
@@ -47,3 +50,4 @@
     crossorigin="anonymous"></script>
 </body>
 </html>
+

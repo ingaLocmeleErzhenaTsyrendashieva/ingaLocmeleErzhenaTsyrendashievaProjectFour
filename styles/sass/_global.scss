@@ -24,7 +24,7 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 62.5%;    
 }
 
 .wrapper {
@@ -35,7 +35,6 @@ html {
 
 body {
     @include nunitoFont();
-    color: green;
     font-size: 1.6rem;
 }
 
@@ -46,17 +45,19 @@ img {
 }
 
 button {
-    // @include robFont(2rem, $black);
     text-decoration: none;
-    // padding: 10px 30px;
     border: 3px transparent solid; 
     display: block;
 }
 
-button:hover, button:focus, input:hover, input:focus {
+button:hover, input:hover, input:focus {
     background: black;
     border: 3px white solid; 
     color: white;
+}
+
+.button:focus{
+    color: black;
 }
 
 ul {
