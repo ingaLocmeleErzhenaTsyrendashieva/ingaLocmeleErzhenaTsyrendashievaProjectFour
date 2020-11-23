@@ -214,7 +214,7 @@ app.displayWeatherHourly = function (weatherData) {
                         <li class="cloudIcon">
                             <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
                         </li>
-                        <li class="currentTemp"><span>${app.dailyForecast}°C</span></li>
+                        <li class="currentTemp"><span">${app.dailyForecast}°C</span></li>
                     </div>
                     <div>
                         <li class="cloud">${app.dailyForecastClouds}</li>
@@ -257,7 +257,7 @@ app.displayWeatherForecast = function (weatherData) {
                 <li class="cloudIcon">
                     <img src="styles/assets/${app.dailyForecastIcon}.svg" alt="${app.dailyForecastIconDesc}">
                 </li>
-                <li class="currentTemp"><span>${app.dailyForecast}°C</span></li>
+                <li class="currentTemp dailyBottom"><span>${app.dailyForecast}°C</span></li>
             </div>
             <li class="moreInfo">More info</li>
             <div class="extraWeatherInfo hide">
@@ -303,8 +303,7 @@ app.weatherForecast = function () {
                 $('.errorWeatherAPI').hide();
                 //reload the page to try call API weather forecast
                 window.location.reload();
-            }
-            )        
+            });        
         }
     })
 }
